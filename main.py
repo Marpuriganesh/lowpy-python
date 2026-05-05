@@ -327,45 +327,58 @@ class Lexer:
 
         text = self.source[start:self.pos]
         return Token(TokenType.NUMBER, text, self.line, start_col, value=value)
-    
-    def handle_string_literal(self, quote_type, start_col,start_line):
-        delimiter = quote_type*3 if self.peek(0) == self.peek(1) == self.peek(2) == quote_type  else quote_type
+
+    def handle_string_literal(self, quote_type, start_col, start_line):
         str_val = ""
-        if delimiter == quote_type*3:
-            self.advance(); self.advance(); self.advance()  # consume the triple quotes
+
+        # 🔥 Step 1: detect triple or single
+        if self.peek() == quote_type and self.peek(1) == quote_type and self.peek(2) == quote_type:
+            delimiter = quote_type * 3
+            self.advance(); self.advance(); self.advance()
         else:
-            self.advance()  # consume the opening quote
+            delimiter = quote_type
+            self.advance()
+
+        # 🔥 Step 2: read content
         while True:
             c = self.peek()
-            if c == '\n' and delimiter != quote_type*3:
-                # Unterminated string (single-line)
-                return Token(TokenType.ERROR, "Unterminated string literal", self.line, start_col)
+
+            # EOF
             if c == '\0':
-                # Unterminated string
-                return Token(TokenType.ERROR, "Unterminated string literal", self.line, start_col)
-            if c == '\\':  # handle escape sequences
-                self.advance()  # consume the backslash
+                return Token(TokenType.ERROR, "Unterminated string literal", start_line, start_col)
+
+            # Single-line string cannot span newline
+            if delimiter == quote_type and c == '\n':
+                return Token(TokenType.ERROR, "Unterminated string literal", start_line, start_col)
+
+            # Escape handling
+            if c == '\\':
+                self.advance()
                 esc = self.peek()
+
                 if esc in ESCAPE_MAP:
                     str_val += ESCAPE_MAP[esc]
-                    self.advance()  # consume the escaped character
-                else:
-                    str_val += esc  # unknown escape, treat literally
                     self.advance()
-            elif c == quote_type and (c == delimiter or (c+self.peek(offset=1)+self.peek(offset=2) == delimiter)):
-                if len(delimiter) == 1:
-                    self.advance()  # consume closing quote
                 else:
-                    self.advance(); self.advance(); self.advance()  # consume closing triple quotes
-                break
-            elif delimiter == quote_type*3 and c == quote_type and self.peek(offset=1) == quote_type and self.peek(offset=2) == quote_type:
-                self.advance(); self.advance(); self.advance()  # consume closing triple quotes
-                break
-            else:
-                str_val += c
-                self.advance()
-        return Token(TokenType.STRING, str_val, start_line, start_col, value=str_val)
+                    return Token(TokenType.ERROR, f"Invalid escape \\{esc}", self.line, self.column)
 
+                continue
+
+            # 🔥 Closing delimiter
+            if delimiter == quote_type:
+                if c == quote_type:
+                    self.advance()
+                    break
+            else:
+                if self.peek() == quote_type and self.peek(1) == quote_type and self.peek(2) == quote_type:
+                    self.advance(); self.advance(); self.advance()
+                    break
+
+            # Normal char
+            str_val += c
+            self.advance()
+
+        return Token(TokenType.STRING, str_val, start_line, start_col, value=str_val)
     # ---------- MAIN ENGINE ----------
     def next_token(self):
         # 1. buffered tokens first
@@ -485,6 +498,12 @@ if __name__ == "__main__":
 code += '\ns3 = """Triple quoted string with "quotes" and \'single quotes\' and a newline\nand a tab\tend of string"""'
 
 code += r"""
+
+# s4 = " sdsdgs
+# sdgsdg
+# sdgsdg"
+
+# s5 = 'sdfsdfsdfsdfsdf
 
 # pointer-style ops
 ptr = addr x
