@@ -58,6 +58,8 @@ class TokenType(Enum):
     U8 = auto(); U16 = auto(); U32 = auto(); U64 = auto()
     F32 = auto(); F64 = auto()
     BOOL = auto(); CHAR = auto(); VOID = auto()
+    
+    STRING = auto()
 
     # -------- OPERATORS --------
     PLUS = auto(); MINUS = auto(); STAR = auto()
@@ -185,6 +187,15 @@ SINGLE_OPS = {
 }
 
 
+ESCAPE_MAP = {
+    'n': '\n',
+    't': '\t',
+    '\\': '\\',
+    '"': '"',
+    "'": "'",
+    'r': '\r',  # worth adding
+}
+
 # ---------------- TOKEN ----------------
 class Token:
     def __init__(self, type_, lexeme, line, column, value=None):
@@ -307,6 +318,44 @@ class Lexer:
 
         text = self.source[start:self.pos]
         return Token(TokenType.NUMBER, text, self.line, start_col, value=value)
+    
+    def handle_string_literal(self, quote_type, start_col,start_line):
+        delimiter = quote_type*3 if self.peek(0) == self.peek(1) == self.peek(2) == quote_type  else quote_type
+        str_val = ""
+        if delimiter == quote_type*3:
+            self.advance(); self.advance(); self.advance()  # consume the triple quotes
+        else:
+            self.advance()  # consume the opening quote
+        while True:
+            c = self.peek()
+            if c == '\n' and delimiter != quote_type*3:
+                # Unterminated string (single-line)
+                return Token(TokenType.ERROR, "Unterminated string literal", self.line, start_col)
+            if c == '\0':
+                # Unterminated string
+                return Token(TokenType.ERROR, "Unterminated string literal", self.line, start_col)
+            if c == '\\':  # handle escape sequences
+                self.advance()  # consume the backslash
+                esc = self.peek()
+                if esc in ESCAPE_MAP:
+                    str_val += ESCAPE_MAP[esc]
+                    self.advance()  # consume the escaped character
+                else:
+                    str_val += esc  # unknown escape, treat literally
+                    self.advance()
+            elif c == quote_type and (c == delimiter or (c+self.peek(offset=1)+self.peek(offset=2) == delimiter)):
+                if len(delimiter) == 1:
+                    self.advance()  # consume closing quote
+                else:
+                    self.advance(); self.advance(); self.advance()  # consume closing triple quotes
+                break
+            elif delimiter == quote_type*3 and c == quote_type and self.peek(offset=1) == quote_type and self.peek(offset=2) == quote_type:
+                self.advance(); self.advance(); self.advance()  # consume closing triple quotes
+                break
+            else:
+                str_val += c
+                self.advance()
+        return Token(TokenType.STRING, str_val, start_line, start_col, value=str_val)
 
     # ---------- MAIN ENGINE ----------
     def next_token(self):
@@ -354,7 +403,9 @@ class Lexer:
             while self.peek() not in ('\n', '\0'):
                 self.advance()
             return self.next_token()
-            
+        if c == "'" or c == '"':
+            quote_type = c
+            return self.handle_string_literal(quote_type, start_col,self.line)
 
         # 🔥 9. MULTI-CHAR OPERATORS (maximal munch)
         two = c + self.peek(offset=1)
@@ -374,7 +425,7 @@ class Lexer:
 
 
 
-code = """# import system
+code = r"""# import system
 import math as m
 
 # function definition
@@ -407,6 +458,15 @@ result = m::sqrt(25)
 
 #checking invalid tokens
 a ::= 42
+
+#checking string literals
+s1 = "Hello, World!\n"
+s2 = 'Single quoted string with a tab\tand a backslash\\'
+
+"""
+code += '\ns3 = """Triple quoted string with "quotes" and \'single quotes\' and a newline\nand a tab\tend of string"""'
+
+code += r"""
 
 # pointer-style ops
 ptr = addr x
