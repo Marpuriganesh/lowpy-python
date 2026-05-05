@@ -408,6 +408,9 @@ z = x + y * 2
 # namespace and arrow
 result = m::sqrt(25)
 
+#checking invalid tokens
+a ::= 42
+
 # pointer-style ops
 ptr = addr x
 value = *ptr
@@ -429,11 +432,11 @@ def main():
     for tok in tokens:
         match tok.type:
             case TokenType.INDENT:
-                print("    " * indent,"INDENT" )
+                print("    " * indent,"{" )
                 indent += 1
             case TokenType.DEDENT:
                 indent -= 1
-                print("    " * indent,"DEDENT") 
+                print("    " * indent,"}" ) 
             case TokenType.NEWLINE:
                 print("")
             case _:
