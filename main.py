@@ -234,15 +234,11 @@ class Lexer:
         return tok
 
     # ---------- CORE UTILS ----------
-    def peek(self):
-        if self.pos >= len(self.source):
+    def peek(self,offset=0):
+        if self.pos+offset >= len(self.source):
             return '\0'
-        return self.source[self.pos]
+        return self.source[self.pos + offset]
 
-    def peek_next(self):
-        if self.pos + 1 >= len(self.source):
-            return '\0'
-        return self.source[self.pos + 1]
 
     def advance(self):
         c = self.peek()
@@ -358,9 +354,10 @@ class Lexer:
             while self.peek() not in ('\n', '\0'):
                 self.advance()
             return self.next_token()
+            
 
         # 🔥 9. MULTI-CHAR OPERATORS (maximal munch)
-        two = c + self.peek_next()
+        two = c + self.peek(offset=1)
         if two in MULTI_OPS:
             self.advance()
             self.advance()
