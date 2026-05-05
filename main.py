@@ -382,8 +382,7 @@ import math as m
 
 # function definition
 pub def add(x: i32, y: i32, ,z: @i32) -> i32:
-    return x + y
-
+    return x + y + *z
 # control flow
 if true and not false:
     a = 10
@@ -425,15 +424,16 @@ final = 42 # done
 def main():
     lexer = Lexer(code)
     tokens = list(lexer)
+    # print(f"Tokens: {tokens}")
     indent = 0
     for tok in tokens:
         match tok.type:
             case TokenType.INDENT:
-                print("    " * indent )
+                print("    " * indent,"INDENT" )
                 indent += 1
             case TokenType.DEDENT:
                 indent -= 1
-                print("    " * indent )
+                print("    " * indent,"DEDENT") 
             case TokenType.NEWLINE:
                 print("")
             case _:
