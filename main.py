@@ -265,12 +265,21 @@ class Lexer:
 
     # ---------- INDENTATION ----------
     def handle_indentation(self):
+        indent_char = None
         count = 0
         start_col = self.column
 
-        while self.peek() == ' ':
+        while self.peek() in (' ', '\t'):
+            c = self.peek()
+            if indent_char is None:
+                indent_char = c
+            elif c != indent_char:
+                return Token(TokenType.ERROR, "Mixed tabs and spaces in indentation", self.line, self.column)
+            if c == '\t':
+                count += 8
+            else:
+                count += 1
             self.advance()
-            count += 1
 
         # skip empty line
         if self.peek() == '\n':
@@ -462,6 +471,15 @@ a ::= 42
 #checking string literals
 s1 = "Hello, World!\n"
 s2 = 'Single quoted string with a tab\tand a backslash\\'
+
+#mixing tabs and spaces (should error)
+def main():
+    if True:
+    	a = 10
+    print("Hello, World!\n")
+     
+if __name__ == "__main__":
+    main()
 
 """
 code += '\ns3 = """Triple quoted string with "quotes" and \'single quotes\' and a newline\nand a tab\tend of string"""'
