@@ -459,7 +459,7 @@ class Lexer:
             self.advance()
             return self.next_token()
         
-        if c in ('r', 'f', 'm') and (self.peek(1) == '"' or self.peek(1) == "'"):
+        if c.isalpha() and (self.peek(1) == '"' or self.peek(1) == "'"):
             prefix = c
             quote_type = self.peek(1)
             self.advance()  # consume prefix
