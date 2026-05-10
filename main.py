@@ -24,28 +24,29 @@ def process_file(path, generate=False):
             json.dump(token_dict, exp_file, indent=4)
     return path, tokens
 
-parser = argparse.ArgumentParser(description='LowPy language tool')
 
-parser.add_argument('-f', '--file', help='source .lpy file',required=False,default="dir")
-
-parser.add_argument('-g','--generate',help='generate expected output for a test file', action='store_true', required=False, default=False)
-
-parser.add_argument('-j', '--jobs', type=int, default=4, help='number of threads for parallel processing (default: 4)', required=False)
-
-parser.add_argument('-t', '--test', choices=['lexer', 'parser'],               # shorthand + longhand
-                    help='run tests for lexer or parser', required=True)
-parser.add_argument('-o', '--output', default='stdout',                        # assignable with default
-                    help='output destination (default: stdout)', required=False)
-parser.add_argument('-v', '--verbose', action='store_true',                    # flag (true/false)
-                    help='verbose output', required=False)
 
 
 def main():
+    parser = argparse.ArgumentParser(description='LowPy language tool')
+
+    parser.add_argument('-f', '--file', help='source .lpy file',required=False,default=None)
+
+    parser.add_argument('-g','--generate',help='generate expected output for a test file', action='store_true', required=False, default=False)
+
+    parser.add_argument('-j', '--jobs', type=int, default=4, help='number of threads for parallel processing (default: 4)', required=False)
+
+    parser.add_argument('-t', '--test', choices=['lexer', 'parser'],               # shorthand + longhand
+                        help='run tests for lexer or parser', required=True)
+    parser.add_argument('-o', '--output', default='stdout',                        # assignable with default
+                        help='output destination (default: stdout)', required=False)
+    parser.add_argument('-v', '--verbose', action='store_true',                    # flag (true/false)
+                        help='verbose output', required=False)
     args = parser.parse_args()
         
     print(f"Running {args.test} tests with file={args.file}, generate={args.generate}, jobs={args.jobs}, output={args.output}, verbose={args.verbose}")
     if args.test == "lexer":
-        if args.file == "dir":
+        if args.file is None:
             test_files = gather_test_files(os.path.join(BASE_TEST_DIR, "lexer"))
         else:
             test_files = [args.file] if os.path.exists(args.file) else []
@@ -78,7 +79,7 @@ def main():
                 print("")
         if args.generate:
            print(f"following expected output files generated: {[f+'.snap' for f in test_files]}")
-
-
+        elif args.test == "parser":
+            print("Parser tests not implemented yet")
 if __name__ == "__main__":
     main()
