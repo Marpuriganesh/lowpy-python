@@ -22,6 +22,14 @@ for i in 10:
     else:
         continue
 
+class Point:
+    x: f64
+    y: f64
+
+    def __init__(self, x: f64, y: f64):
+        self.x = x
+        self.y = y
+
 # types and operations
 x: i32 = 100
 y: f64 = 3
