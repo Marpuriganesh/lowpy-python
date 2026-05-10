@@ -328,8 +328,18 @@ class Lexer:
         text = self.source[start:self.pos]
         return Token(TokenType.NUMBER, text, self.line, start_col, value=value)
 
-    def handle_string_literal(self, quote_type, start_col, start_line):
+    def handle_string_literal(self, quote_type, start_col, start_line, prefix=None):
         str_val = ""
+        skip_escape = False
+        
+        if prefix:
+            match prefix:
+                case 'r':
+                    skip_escape = True
+                case 'f':
+                    pass
+                case _:
+                    return Token(TokenType.ERROR, f"Unknown string prefix {prefix}", start_line, start_col)
 
         # 🔥 Step 1: detect triple or single
         if self.peek() == quote_type and self.peek(1) == quote_type and self.peek(2) == quote_type:
@@ -351,8 +361,9 @@ class Lexer:
             if delimiter == quote_type and c == '\n':
                 return Token(TokenType.ERROR, "Unterminated string literal", start_line, start_col)
 
+
             # Escape handling
-            if c == '\\':
+            if c == '\\' and not skip_escape:
                 self.advance()
                 esc = self.peek()
 
@@ -412,6 +423,12 @@ class Lexer:
         if c.isspace():
             self.advance()
             return self.next_token()
+        
+        if c in ('r', 'f', 'm') and (self.peek(1) == '"' or self.peek(1) == "'"):
+            prefix = c
+            quote_type = self.peek(1)
+            self.advance()  # consume prefix
+            return self.handle_string_literal(quote_type, start_col, self.line, prefix=prefix)
 
         # 6. identifiers / keywords
         if c.isalpha() or c == '_':
@@ -425,6 +442,7 @@ class Lexer:
             while self.peek() not in ('\n', '\0'):
                 self.advance()
             return self.next_token()
+        
         if c == "'" or c == '"':
             quote_type = c
             return self.handle_string_literal(quote_type, start_col,self.line)
@@ -495,7 +513,7 @@ if __name__ == "__main__":
     main()
 
 """
-code += '\ns3 = """Triple quoted string with "quotes" and \'single quotes\' and a newline\nand a tab\tend of string"""'
+code += '\ns3 = r"""Triple quoted string with "quotes" and \'single quotes\' and a newline\nand a tab\tend of string"""'
 
 code += r"""
 
@@ -517,6 +535,12 @@ if x >= 10 and x <= 100:
 # comment at end
 final = 42 # done
 """
+code += '\nra = r"hello\\nworld"'           # backslash-n should stay as \n, not newline
+code += "\nrb = r'tab\\there'"              # backslash-t should stay literal
+code += '\nrc = r"path\\to\\file"'          # multiple backslashes
+code += '\nrd = r\'single quoted raw\''     # single quote raw string
+code += '\nre = r"""multi\nline\nraw"""'    # triple quoted, newlines should be real newlines
+code += '\nrf = r"""has "inner" quotes"""'  # double quotes inside triple raw
 
 def main():
     lexer = Lexer(code)
