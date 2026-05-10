@@ -321,10 +321,45 @@ class Lexer:
         start_col = self.column
 
         value = 0
-        while self.peek().isdigit():
+        fraction_part = 0.0
+        exponent_part = 0
+
+        while self.peek().isdigit() or (self.peek() == '_' and self.peek(1).isdigit()):
+            if self.peek() == '_':
+                self.advance()  # skip underscore
+                continue
             digit = int(self.advance())
             value = value * 10 + digit
-
+        
+        if self.peek() == '.' and self.peek(1).isdigit():
+            self.advance()
+            fraction_part_count = 0
+            while self.peek().isdigit() or (self.peek() == '_' and self.peek(1).isdigit()):
+                if self.peek() == '_':
+                    self.advance()
+                    continue
+                digit = int(self.advance())
+                fraction_part = fraction_part + (digit/10**(fraction_part_count+1))
+                fraction_part_count += 1
+        
+        value += fraction_part if fraction_part  else 0
+        
+        if self.peek() in ('e', 'E') and (self.peek(1).isdigit() or (self.peek(1) in ('+', '-') and self.peek(2).isdigit())):
+            sign = 1
+            self.advance()
+            if self.peek() in ('+', '-'):
+                sign = 1 if self.advance() == '+' else -1
+            while self.peek().isdigit() or (self.peek() == '_' and self.peek(1).isdigit()):
+                if self.peek() == '_':
+                    self.advance()
+                    continue
+                digit = int(self.advance())
+                exponent_part = (exponent_part * 10 + digit)
+            exponent_part *= sign
+        
+        value = value * (10 ** exponent_part)
+            
+        
         text = self.source[start:self.pos]
         return Token(TokenType.NUMBER, text, self.line, start_col, value=value)
 
@@ -541,6 +576,16 @@ code += '\nrc = r"path\\to\\file"'          # multiple backslashes
 code += '\nrd = r\'single quoted raw\''     # single quote raw string
 code += '\nre = r"""multi\nline\nraw"""'    # triple quoted, newlines should be real newlines
 code += '\nrf = r"""has "inner" quotes"""'  # double quotes inside triple raw
+
+#floatting point literals
+code += '\n\nna = 42'                    # basic int
+code += '\nnb = 1_000_000'             # underscores in int
+code += '\nnc = 3.14'                  # basic float
+code += '\nnd = 1_0.5_5'              # underscores in float
+code += '\nne = 1.5e10'               # scientific notation
+code += '\nnf = 2.3e-4'               # negative exponent
+code += '\nng = 1E+6'                 # uppercase E, positive sign
+code += '\nnh = 1_5e1_0'             # underscores in both parts
 
 def main():
     lexer = Lexer(code)
