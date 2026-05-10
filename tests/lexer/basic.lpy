@@ -1,0 +1,43 @@
+# import system
+import math as m
+
+# function definition
+pub def add(x: i32, y: i32, ,z: @i32) -> i32:
+    return x + y + *z
+
+# control flow
+if true and not false:
+    a = 10
+    b = 20
+    c = a + b
+elif false:
+    c = 0
+else:
+    c = -1
+
+# loop
+for i in 10:
+    if i == 5:
+        break
+    else:
+        continue
+
+# types and operations
+x: i32 = 100
+y: f64 = 3
+z = x + y * 2
+
+# namespace and arrow
+result = m::sqrt(25)
+
+# pointer-style ops
+ptr = addr x
+value = *ptr
+ref = &x
+
+# comparisons
+if x >= 10 and x <= 100:
+    ok = true
+
+# comment at end
+final = 42 # done

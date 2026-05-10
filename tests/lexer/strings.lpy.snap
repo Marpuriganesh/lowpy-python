@@ -1,0 +1,324 @@
+[
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 1,
+        "column": 35,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "s1",
+        "line": 2,
+        "column": 1,
+        "value": "s1"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 2,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "STRING",
+        "lexeme": "Hello, World!\n",
+        "line": 2,
+        "column": 6,
+        "value": "Hello, World!\n"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 2,
+        "column": 23,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "s2",
+        "line": 3,
+        "column": 1,
+        "value": "s2"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 3,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "STRING",
+        "lexeme": "Single quoted string with a tab\tand a backslash\\",
+        "line": 3,
+        "column": 6,
+        "value": "Single quoted string with a tab\tand a backslash\\"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 3,
+        "column": 58,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 4,
+        "column": 1,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 5,
+        "column": 58,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "s3",
+        "line": 6,
+        "column": 1,
+        "value": "s3"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 6,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "ERROR",
+        "lexeme": "Unknown string prefix m",
+        "line": 6,
+        "column": 6,
+        "value": "Unknown string prefix m"
+    },
+    {
+        "type": "STRING",
+        "lexeme": "Triple quoted string with \"quotes\" and 'single quotes' and a newline\nand a tab\tend of string",
+        "line": 6,
+        "column": 7,
+        "value": "Triple quoted string with \"quotes\" and 'single quotes' and a newline\nand a tab\tend of string"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 7,
+        "column": 27,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 8,
+        "column": 1,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 9,
+        "column": 14,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "ra",
+        "line": 10,
+        "column": 1,
+        "value": "ra"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 10,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "STRING",
+        "lexeme": "hello\\nworld",
+        "line": 10,
+        "column": 6,
+        "value": "hello\\nworld"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 10,
+        "column": 21,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "rb",
+        "line": 11,
+        "column": 1,
+        "value": "rb"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 11,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "STRING",
+        "lexeme": "tab\\there",
+        "line": 11,
+        "column": 6,
+        "value": "tab\\there"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 11,
+        "column": 18,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "rc",
+        "line": 12,
+        "column": 1,
+        "value": "rc"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 12,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "STRING",
+        "lexeme": "path\\to\\file",
+        "line": 12,
+        "column": 6,
+        "value": "path\\to\\file"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 12,
+        "column": 21,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "rd",
+        "line": 13,
+        "column": 1,
+        "value": "rd"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 13,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "STRING",
+        "lexeme": "single quoted raw",
+        "line": 13,
+        "column": 6,
+        "value": "single quoted raw"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 13,
+        "column": 26,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 14,
+        "column": 1,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 15,
+        "column": 28,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "re",
+        "line": 16,
+        "column": 1,
+        "value": "re"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 16,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "STRING",
+        "lexeme": "multi\nline\nraw",
+        "line": 16,
+        "column": 6,
+        "value": "multi\nline\nraw"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 18,
+        "column": 7,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 19,
+        "column": 1,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "rf",
+        "line": 20,
+        "column": 1,
+        "value": "rf"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 20,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "STRING",
+        "lexeme": "has \"inner\" quotes",
+        "line": 20,
+        "column": 6,
+        "value": "has \"inner\" quotes"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 20,
+        "column": 31,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "EOF",
+        "lexeme": "",
+        "line": 21,
+        "column": 1,
+        "value": "EOF"
+    }
+]

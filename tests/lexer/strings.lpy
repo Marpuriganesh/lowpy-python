@@ -1,0 +1,20 @@
+# double and single quoted strings
+s1 = "Hello, World!\n"
+s2 = 'Single quoted string with a tab\tand a backslash\\'
+
+# triple quoted string with unknown prefix (should error)
+s3 = m"""Triple quoted string with "quotes" and 'single quotes' and a newline
+and a tab	end of string"""
+
+# raw strings
+ra = r"hello\nworld"
+rb = r'tab\there'
+rc = r"path\to\file"
+rd = r'single quoted raw'
+
+# triple quoted raw strings
+re = r"""multi
+line
+raw"""
+
+rf = r"""has "inner" quotes"""

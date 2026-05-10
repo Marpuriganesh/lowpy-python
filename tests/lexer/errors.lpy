@@ -1,0 +1,8 @@
+# invalid token sequence
+a ::= 42
+
+# mixed tabs and spaces in indentation (should error)
+def main():
+    if true:
+	a = 10
+    print("Hello, World!\n")

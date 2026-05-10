@@ -40,3 +40,4 @@ Thumbs.db
 *.ilk
 
 .venv/
+__pycache__/

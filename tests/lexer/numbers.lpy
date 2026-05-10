@@ -1,0 +1,23 @@
+# basic int
+na = 42
+
+# underscores in int
+nb = 1_000_000
+
+# basic float
+nc = 3.14
+
+# underscores in float
+nd = 1_0.5_5
+
+# scientific notation
+ne = 1.5e10
+
+# negative exponent
+nf = 2.3e-4
+
+# uppercase E, positive sign
+ng = 1E+6
+
+# underscores in both parts
+nh = 1_5e1_0
