@@ -513,7 +513,7 @@ if __name__ == "__main__":
     main()
 
 """
-code += '\ns3 = r"""Triple quoted string with "quotes" and \'single quotes\' and a newline\nand a tab\tend of string"""'
+code += '\ns3 = m"""Triple quoted string with "quotes" and \'single quotes\' and a newline\nand a tab\tend of string"""'
 
 code += r"""
 
