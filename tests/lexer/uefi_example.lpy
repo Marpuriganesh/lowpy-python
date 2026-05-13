@@ -1,0 +1,75 @@
+# LowPy UEFI Hello World Example
+# Demonstrates: types, function pointers, pointer syntax (@), implicit self, wide strings
+
+# Forward declaration - empty type, fields defined elsewhere or by firmware
+type EFI_SIMPLE_TEXT_INPUT_PROTOCOL:
+    pass
+
+# Function pointer signatures use (@Type, ...) -> ReturnType syntax
+# @ means pointer type declaration (like * in C but only in type position)
+# * is used for dereferencing, & is used for address-of (same as C)
+# CHAR16 = UTF-16 character, 16-bit (2 bytes) per character, NOT 16 bytes
+type EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL:
+    # First arg is implicit self - compiler auto passes the receiver
+    # So caller writes: ConOut.Reset(true) not ConOut.Reset(ConOut, true)
+    Reset:
+        (@EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, BOOLEAN) -> EFI_STATUS
+    OutputString:
+        # @CHAR16 expects UTF-16LE encoded string (use u"" prefix for wide strings)
+        (@EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, @CHAR16) -> EFI_STATUS
+
+type EFI_TABLE_HEADER:
+    Signature:  UINT64
+    Revision:   UINT32
+    HeaderSize: UINT32
+    CRC32:      UINT32
+    Reserved:   UINT32
+
+type EFI_SYSTEM_TABLE:
+    hrd:              EFI_TABLE_HEADER
+    FirmwareVendor:   @CHAR16        # UTF-16 string pointer
+    FirmwareVersion:  UINT32
+    ConsoleInHandle:  EFI_HANDLE
+    ConIn:            @EFI_SIMPLE_TEXT_INPUT_PROTOCOL
+    ConsoleOutHandle: EFI_HANDLE
+    ConOut:           @EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL
+
+# UEFI entry point - called by firmware
+# ImageHandle: handle to this image
+# SystemTable: pointer to UEFI system table (access to all firmware services)
+def efi_main(ImageHandle: EFI_HANDLE, SystemTable: @EFI_SYSTEM_TABLE) -> EFI_STATUS:
+
+    # Implicit self: compiler rewrites ConOut.Reset(true)
+    # to Reset(SystemTable.ConOut, true) at IR emit stage
+    SystemTable.ConOut.Reset(true)
+
+    # u"" prefix = UTF-16LE wide string literal
+    # compiler emits 2 bytes per char with 0x0000 null terminator
+    # e.g. 'T' -> 0x54 0x00, 'e' -> 0x65 0x00 ...
+    # In QBE IR this becomes: data $wstr = { h 84, h 101, ... h 0 }
+    SystemTable.ConOut.OutputString(u"Testing...\r\n")
+
+    # Infinite loop - hang after output (standard UEFI pattern)
+    while true:
+        pass
+
+    # EFI_SUCCESS = 0
+    return 0
+
+# --- Pointer syntax reference ---
+# @Type        = pointer type declaration (type position only)
+# *ptr         = dereference a pointer
+# &variable    = get address of a variable
+#
+# Example:
+#   x: UINT32 = 42
+#   ptr: @UINT32 = &x     # ptr holds address of x
+#   val: UINT32 = *ptr    # dereference to get 42
+#
+# Note: @@ (pointer to pointer) is intentionally NOT in LowPy
+# &variable naturally creates a pointer-to-pointer situation without explicit @@ syntax
+# Example:
+#   buf: @UINT8 = null
+#   allocate(&buf)         # &buf is naturally pointer-to-pointer, no @@ needed
+#   def allocate(out: @UINT8):
+#       *out = some_memory_address
