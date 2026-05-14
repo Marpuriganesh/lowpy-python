@@ -63,7 +63,7 @@
         "value": "INDENT"
     },
     {
-        "type": "IDENTIFIER",
+        "type": "PASS",
         "lexeme": "pass",
         "line": 6,
         "column": 5,
@@ -182,88 +182,74 @@
         "value": ":"
     },
     {
-        "type": "NEWLINE",
-        "lexeme": "\\n",
-        "line": 15,
-        "column": 11,
-        "value": "NEWLINE"
-    },
-    {
-        "type": "INDENT",
-        "lexeme": "",
-        "line": 16,
-        "column": 1,
-        "value": "INDENT"
-    },
-    {
         "type": "LPAREN",
         "lexeme": "(",
-        "line": 16,
-        "column": 9,
+        "line": 15,
+        "column": 11,
         "value": "("
     },
     {
         "type": "AT",
         "lexeme": "@",
-        "line": 16,
-        "column": 10,
+        "line": 15,
+        "column": 12,
         "value": "@"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL",
-        "line": 16,
-        "column": 11,
+        "line": 15,
+        "column": 13,
         "value": "EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL"
     },
     {
         "type": "COMMA",
         "lexeme": ",",
-        "line": 16,
-        "column": 42,
+        "line": 15,
+        "column": 44,
         "value": ","
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "BOOLEAN",
-        "line": 16,
-        "column": 44,
+        "line": 15,
+        "column": 46,
         "value": "BOOLEAN"
     },
     {
         "type": "RPAREN",
         "lexeme": ")",
-        "line": 16,
-        "column": 51,
+        "line": 15,
+        "column": 53,
         "value": ")"
     },
     {
         "type": "ARROW",
         "lexeme": "->",
-        "line": 16,
-        "column": 53,
+        "line": 15,
+        "column": 55,
         "value": "->"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "EFI_STATUS",
-        "line": 16,
-        "column": 56,
+        "line": 15,
+        "column": 58,
         "value": "EFI_STATUS"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 16,
-        "column": 66,
+        "line": 15,
+        "column": 68,
         "value": "NEWLINE"
     },
     {
-        "type": "DEDENT",
-        "lexeme": "",
-        "line": 17,
-        "column": 1,
-        "value": "DEDENT"
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 16,
+        "column": 80,
+        "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
@@ -280,1339 +266,1311 @@
         "value": ":"
     },
     {
-        "type": "NEWLINE",
-        "lexeme": "\\n",
-        "line": 17,
-        "column": 18,
-        "value": "NEWLINE"
-    },
-    {
-        "type": "INDENT",
-        "lexeme": "",
-        "line": 18,
-        "column": 1,
-        "value": "INDENT"
-    },
-    {
-        "type": "NEWLINE",
-        "lexeme": "\\n",
-        "line": 18,
-        "column": 84,
-        "value": "NEWLINE"
-    },
-    {
         "type": "LPAREN",
         "lexeme": "(",
-        "line": 19,
-        "column": 9,
+        "line": 17,
+        "column": 18,
         "value": "("
     },
     {
         "type": "AT",
         "lexeme": "@",
-        "line": 19,
-        "column": 10,
+        "line": 17,
+        "column": 19,
         "value": "@"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL",
-        "line": 19,
-        "column": 11,
+        "line": 17,
+        "column": 20,
         "value": "EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL"
     },
     {
         "type": "COMMA",
         "lexeme": ",",
-        "line": 19,
-        "column": 42,
+        "line": 17,
+        "column": 51,
         "value": ","
     },
     {
         "type": "AT",
         "lexeme": "@",
-        "line": 19,
-        "column": 44,
+        "line": 17,
+        "column": 53,
         "value": "@"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "CHAR16",
-        "line": 19,
-        "column": 45,
+        "line": 17,
+        "column": 54,
         "value": "CHAR16"
     },
     {
         "type": "RPAREN",
         "lexeme": ")",
-        "line": 19,
-        "column": 51,
+        "line": 17,
+        "column": 60,
         "value": ")"
     },
     {
         "type": "ARROW",
         "lexeme": "->",
-        "line": 19,
-        "column": 53,
+        "line": 17,
+        "column": 62,
         "value": "->"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "EFI_STATUS",
-        "line": 19,
-        "column": 56,
+        "line": 17,
+        "column": 65,
         "value": "EFI_STATUS"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 19,
-        "column": 66,
+        "line": 17,
+        "column": 75,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 20,
+        "line": 18,
         "column": 1,
         "value": "NEWLINE"
     },
     {
         "type": "DEDENT",
         "lexeme": "",
-        "line": 21,
-        "column": 1,
-        "value": "DEDENT"
-    },
-    {
-        "type": "DEDENT",
-        "lexeme": "",
-        "line": 21,
+        "line": 19,
         "column": 1,
         "value": "DEDENT"
     },
     {
         "type": "TYPE",
         "lexeme": "type",
-        "line": 21,
+        "line": 19,
         "column": 1,
         "value": "type"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "EFI_TABLE_HEADER",
-        "line": 21,
+        "line": 19,
         "column": 6,
         "value": "EFI_TABLE_HEADER"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 21,
+        "line": 19,
         "column": 22,
         "value": ":"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 21,
+        "line": 19,
         "column": 23,
         "value": "NEWLINE"
     },
     {
         "type": "INDENT",
         "lexeme": "",
-        "line": 22,
+        "line": 20,
         "column": 1,
         "value": "INDENT"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "Signature",
-        "line": 22,
+        "line": 20,
         "column": 5,
         "value": "Signature"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 22,
+        "line": 20,
         "column": 14,
         "value": ":"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "UINT64",
-        "line": 22,
+        "line": 20,
         "column": 17,
         "value": "UINT64"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 22,
+        "line": 20,
         "column": 23,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "Revision",
-        "line": 23,
+        "line": 21,
         "column": 5,
         "value": "Revision"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 23,
+        "line": 21,
         "column": 13,
         "value": ":"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "UINT32",
-        "line": 23,
+        "line": 21,
         "column": 17,
         "value": "UINT32"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 23,
+        "line": 21,
         "column": 23,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "HeaderSize",
-        "line": 24,
+        "line": 22,
         "column": 5,
         "value": "HeaderSize"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 24,
+        "line": 22,
         "column": 15,
         "value": ":"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "UINT32",
-        "line": 24,
+        "line": 22,
         "column": 17,
         "value": "UINT32"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 24,
+        "line": 22,
         "column": 23,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "CRC32",
-        "line": 25,
+        "line": 23,
         "column": 5,
         "value": "CRC32"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 25,
+        "line": 23,
         "column": 10,
         "value": ":"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "UINT32",
-        "line": 25,
+        "line": 23,
         "column": 17,
         "value": "UINT32"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 25,
+        "line": 23,
         "column": 23,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "Reserved",
-        "line": 26,
+        "line": 24,
         "column": 5,
         "value": "Reserved"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 26,
+        "line": 24,
         "column": 13,
         "value": ":"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "UINT32",
-        "line": 26,
+        "line": 24,
         "column": 17,
         "value": "UINT32"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 26,
+        "line": 24,
         "column": 23,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 27,
+        "line": 25,
         "column": 1,
         "value": "NEWLINE"
     },
     {
         "type": "DEDENT",
         "lexeme": "",
-        "line": 28,
+        "line": 26,
         "column": 1,
         "value": "DEDENT"
     },
     {
         "type": "TYPE",
         "lexeme": "type",
-        "line": 28,
+        "line": 26,
         "column": 1,
         "value": "type"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "EFI_SYSTEM_TABLE",
-        "line": 28,
+        "line": 26,
         "column": 6,
         "value": "EFI_SYSTEM_TABLE"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 28,
+        "line": 26,
         "column": 22,
         "value": ":"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 28,
+        "line": 26,
         "column": 23,
         "value": "NEWLINE"
     },
     {
         "type": "INDENT",
         "lexeme": "",
-        "line": 29,
+        "line": 27,
         "column": 1,
         "value": "INDENT"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "hrd",
-        "line": 29,
+        "line": 27,
         "column": 5,
         "value": "hrd"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 29,
+        "line": 27,
         "column": 8,
         "value": ":"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "EFI_TABLE_HEADER",
-        "line": 29,
+        "line": 27,
         "column": 23,
         "value": "EFI_TABLE_HEADER"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 29,
+        "line": 27,
         "column": 39,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "FirmwareVendor",
-        "line": 30,
+        "line": 28,
         "column": 5,
         "value": "FirmwareVendor"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 30,
+        "line": 28,
         "column": 19,
         "value": ":"
     },
     {
         "type": "AT",
         "lexeme": "@",
-        "line": 30,
+        "line": 28,
         "column": 23,
         "value": "@"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "CHAR16",
-        "line": 30,
+        "line": 28,
         "column": 24,
         "value": "CHAR16"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 30,
+        "line": 28,
         "column": 61,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "FirmwareVersion",
-        "line": 31,
+        "line": 29,
         "column": 5,
         "value": "FirmwareVersion"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 31,
+        "line": 29,
         "column": 20,
         "value": ":"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "UINT32",
-        "line": 31,
+        "line": 29,
         "column": 23,
         "value": "UINT32"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 31,
+        "line": 29,
         "column": 29,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "ConsoleInHandle",
-        "line": 32,
+        "line": 30,
         "column": 5,
         "value": "ConsoleInHandle"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 32,
+        "line": 30,
         "column": 20,
         "value": ":"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "EFI_HANDLE",
-        "line": 32,
+        "line": 30,
         "column": 23,
         "value": "EFI_HANDLE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 32,
+        "line": 30,
         "column": 33,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "ConIn",
-        "line": 33,
+        "line": 31,
         "column": 5,
         "value": "ConIn"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 33,
+        "line": 31,
         "column": 10,
         "value": ":"
     },
     {
         "type": "AT",
         "lexeme": "@",
-        "line": 33,
+        "line": 31,
         "column": 23,
         "value": "@"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "EFI_SIMPLE_TEXT_INPUT_PROTOCOL",
-        "line": 33,
+        "line": 31,
         "column": 24,
         "value": "EFI_SIMPLE_TEXT_INPUT_PROTOCOL"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 33,
+        "line": 31,
         "column": 54,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "ConsoleOutHandle",
-        "line": 34,
+        "line": 32,
         "column": 5,
         "value": "ConsoleOutHandle"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 34,
+        "line": 32,
         "column": 21,
         "value": ":"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "EFI_HANDLE",
-        "line": 34,
+        "line": 32,
         "column": 23,
         "value": "EFI_HANDLE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 34,
+        "line": 32,
         "column": 33,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "ConOut",
-        "line": 35,
+        "line": 33,
         "column": 5,
         "value": "ConOut"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 35,
+        "line": 33,
         "column": 11,
         "value": ":"
     },
     {
         "type": "AT",
         "lexeme": "@",
-        "line": 35,
+        "line": 33,
         "column": 23,
         "value": "@"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL",
-        "line": 35,
+        "line": 33,
         "column": 24,
         "value": "EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 35,
+        "line": 33,
         "column": 55,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 36,
+        "line": 34,
         "column": 1,
         "value": "NEWLINE"
     },
     {
         "type": "DEDENT",
         "lexeme": "",
-        "line": 37,
+        "line": 35,
         "column": 1,
         "value": "DEDENT"
     },
     {
         "type": "TYPE",
         "lexeme": "type",
-        "line": 37,
+        "line": 35,
         "column": 1,
         "value": "type"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "Packet",
-        "line": 37,
+        "line": 35,
         "column": 6,
         "value": "Packet"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 37,
+        "line": 35,
         "column": 12,
         "value": ":"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 37,
+        "line": 35,
         "column": 13,
         "value": "NEWLINE"
     },
     {
         "type": "INDENT",
         "lexeme": "",
-        "line": 38,
+        "line": 36,
         "column": 1,
         "value": "INDENT"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "header",
-        "line": 38,
+        "line": 36,
         "column": 5,
         "value": "header"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 38,
+        "line": 36,
         "column": 11,
         "value": ":"
     },
     {
         "type": "U8",
         "lexeme": "u8",
-        "line": 38,
+        "line": 36,
         "column": 13,
         "value": "u8"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 38,
+        "line": 36,
         "column": 15,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "length",
-        "line": 39,
+        "line": 37,
         "column": 5,
         "value": "length"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 39,
+        "line": 37,
         "column": 11,
         "value": ":"
     },
     {
         "type": "U16",
         "lexeme": "u16",
-        "line": 39,
+        "line": 37,
         "column": 13,
         "value": "u16"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 39,
+        "line": 37,
         "column": 16,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "data",
-        "line": 40,
+        "line": 38,
         "column": 5,
         "value": "data"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 40,
+        "line": 38,
         "column": 9,
         "value": ":"
     },
     {
         "type": "AT",
         "lexeme": "@",
-        "line": 40,
+        "line": 38,
         "column": 11,
         "value": "@"
     },
     {
         "type": "U8",
         "lexeme": "u8",
-        "line": 40,
+        "line": 38,
         "column": 12,
         "value": "u8"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 40,
+        "line": 38,
         "column": 14,
         "value": "NEWLINE"
     },
     {
         "type": "DUNDER_TYPE_LAYOUT",
         "lexeme": "__layout__",
-        "line": 41,
+        "line": 39,
         "column": 5,
         "value": "__layout__"
     },
     {
         "type": "LPAREN",
         "lexeme": "(",
-        "line": 41,
+        "line": 39,
         "column": 15,
         "value": "("
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "packed",
-        "line": 41,
+        "line": 39,
         "column": 16,
         "value": "packed"
     },
     {
         "type": "COMMA",
         "lexeme": ",",
-        "line": 41,
+        "line": 39,
         "column": 22,
         "value": ","
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "alignment",
-        "line": 41,
+        "line": 39,
         "column": 24,
         "value": "alignment"
     },
     {
         "type": "EQUALS",
         "lexeme": "=",
-        "line": 41,
+        "line": 39,
         "column": 33,
         "value": "="
     },
     {
         "type": "NUMBER",
         "lexeme": "4",
-        "line": 41,
+        "line": 39,
         "column": 34,
         "value": 4
     },
     {
         "type": "RPAREN",
         "lexeme": ")",
-        "line": 41,
+        "line": 39,
         "column": 35,
         "value": ")"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 41,
+        "line": 39,
         "column": 36,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 42,
+        "line": 40,
         "column": 1,
         "value": "NEWLINE"
     },
     {
         "type": "DEDENT",
         "lexeme": "",
-        "line": 43,
+        "line": 41,
         "column": 1,
         "value": "DEDENT"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 43,
+        "line": 41,
         "column": 40,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 44,
+        "line": 42,
         "column": 36,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 45,
+        "line": 43,
         "column": 78,
         "value": "NEWLINE"
     },
     {
         "type": "DEF",
         "lexeme": "def",
-        "line": 46,
+        "line": 44,
         "column": 1,
         "value": "def"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "efi_main",
-        "line": 46,
+        "line": 44,
         "column": 5,
         "value": "efi_main"
     },
     {
         "type": "LPAREN",
         "lexeme": "(",
-        "line": 46,
+        "line": 44,
         "column": 13,
         "value": "("
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "ImageHandle",
-        "line": 46,
+        "line": 44,
         "column": 14,
         "value": "ImageHandle"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 46,
+        "line": 44,
         "column": 25,
         "value": ":"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "EFI_HANDLE",
-        "line": 46,
+        "line": 44,
         "column": 27,
         "value": "EFI_HANDLE"
     },
     {
         "type": "COMMA",
         "lexeme": ",",
-        "line": 46,
+        "line": 44,
         "column": 37,
         "value": ","
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "SystemTable",
-        "line": 46,
+        "line": 44,
         "column": 39,
         "value": "SystemTable"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 46,
+        "line": 44,
         "column": 50,
         "value": ":"
     },
     {
         "type": "AT",
         "lexeme": "@",
-        "line": 46,
+        "line": 44,
         "column": 52,
         "value": "@"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "EFI_SYSTEM_TABLE",
-        "line": 46,
+        "line": 44,
         "column": 53,
         "value": "EFI_SYSTEM_TABLE"
     },
     {
         "type": "RPAREN",
         "lexeme": ")",
-        "line": 46,
+        "line": 44,
         "column": 69,
         "value": ")"
     },
     {
         "type": "ARROW",
         "lexeme": "->",
-        "line": 46,
+        "line": 44,
         "column": 71,
         "value": "->"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "EFI_STATUS",
-        "line": 46,
+        "line": 44,
         "column": 74,
         "value": "EFI_STATUS"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 46,
+        "line": 44,
         "column": 84,
         "value": ":"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 46,
+        "line": 44,
         "column": 85,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 47,
+        "line": 45,
         "column": 1,
         "value": "NEWLINE"
     },
     {
         "type": "INDENT",
         "lexeme": "",
-        "line": 48,
+        "line": 46,
         "column": 1,
         "value": "INDENT"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 48,
+        "line": 46,
         "column": 58,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 49,
+        "line": 47,
         "column": 58,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "SystemTable",
-        "line": 50,
+        "line": 48,
         "column": 5,
         "value": "SystemTable"
     },
     {
         "type": "DOT",
         "lexeme": ".",
-        "line": 50,
+        "line": 48,
         "column": 16,
         "value": "."
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "ConOut",
-        "line": 50,
+        "line": 48,
         "column": 17,
         "value": "ConOut"
     },
     {
         "type": "DOT",
         "lexeme": ".",
-        "line": 50,
+        "line": 48,
         "column": 23,
         "value": "."
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "Reset",
-        "line": 50,
+        "line": 48,
         "column": 24,
         "value": "Reset"
     },
     {
         "type": "LPAREN",
         "lexeme": "(",
-        "line": 50,
+        "line": 48,
         "column": 29,
         "value": "("
     },
     {
         "type": "TRUE",
         "lexeme": "true",
-        "line": 50,
+        "line": 48,
         "column": 30,
         "value": "true"
     },
     {
         "type": "RPAREN",
         "lexeme": ")",
-        "line": 50,
+        "line": 48,
         "column": 34,
         "value": ")"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 50,
+        "line": 48,
         "column": 35,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 51,
+        "line": 49,
         "column": 1,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 52,
+        "line": 50,
         "column": 48,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 53,
+        "line": 51,
         "column": 66,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 54,
+        "line": 52,
         "column": 50,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 55,
+        "line": 53,
         "column": 68,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "SystemTable",
-        "line": 56,
+        "line": 54,
         "column": 5,
         "value": "SystemTable"
     },
     {
         "type": "DOT",
         "lexeme": ".",
-        "line": 56,
+        "line": 54,
         "column": 16,
         "value": "."
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "ConOut",
-        "line": 56,
+        "line": 54,
         "column": 17,
         "value": "ConOut"
     },
     {
         "type": "DOT",
         "lexeme": ".",
-        "line": 56,
+        "line": 54,
         "column": 23,
         "value": "."
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "OutputString",
-        "line": 56,
+        "line": 54,
         "column": 24,
         "value": "OutputString"
     },
     {
         "type": "LPAREN",
         "lexeme": "(",
-        "line": 56,
+        "line": 54,
         "column": 36,
         "value": "("
     },
     {
         "type": "WIDE_STRING",
         "lexeme": "Testing...\r\n",
-        "line": 56,
+        "line": 54,
         "column": 37,
         "value": "Testing...\r\n"
     },
     {
         "type": "RPAREN",
         "lexeme": ")",
-        "line": 56,
+        "line": 54,
         "column": 54,
         "value": ")"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 56,
+        "line": 54,
         "column": 55,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 57,
+        "line": 55,
         "column": 1,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 58,
+        "line": 56,
         "column": 64,
         "value": "NEWLINE"
     },
     {
         "type": "WHILE",
         "lexeme": "while",
-        "line": 59,
+        "line": 57,
         "column": 5,
         "value": "while"
     },
     {
         "type": "TRUE",
         "lexeme": "true",
-        "line": 59,
+        "line": 57,
         "column": 11,
         "value": "true"
     },
     {
         "type": "COLON",
         "lexeme": ":",
-        "line": 59,
+        "line": 57,
         "column": 15,
         "value": ":"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 59,
+        "line": 57,
         "column": 16,
         "value": "NEWLINE"
     },
     {
         "type": "INDENT",
         "lexeme": "",
-        "line": 60,
+        "line": 58,
         "column": 1,
         "value": "INDENT"
     },
     {
-        "type": "IDENTIFIER",
+        "type": "PASS",
         "lexeme": "pass",
-        "line": 60,
+        "line": 58,
         "column": 9,
         "value": "pass"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 60,
+        "line": 58,
         "column": 13,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 61,
+        "line": 59,
         "column": 1,
         "value": "NEWLINE"
     },
     {
         "type": "DEDENT",
         "lexeme": "",
-        "line": 62,
+        "line": 60,
         "column": 1,
         "value": "DEDENT"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 62,
+        "line": 60,
         "column": 22,
         "value": "NEWLINE"
     },
     {
         "type": "RETURN",
         "lexeme": "return",
-        "line": 63,
+        "line": 61,
         "column": 5,
         "value": "return"
     },
     {
         "type": "NUMBER",
         "lexeme": "0",
-        "line": 63,
+        "line": 61,
         "column": 12,
         "value": 0
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 63,
+        "line": 61,
         "column": 13,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 64,
+        "line": 62,
         "column": 1,
         "value": "NEWLINE"
     },
     {
         "type": "DEDENT",
         "lexeme": "",
-        "line": 65,
+        "line": 63,
         "column": 1,
         "value": "DEDENT"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 65,
+        "line": 63,
         "column": 35,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 66,
+        "line": 64,
         "column": 63,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 67,
+        "line": 65,
         "column": 39,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 68,
+        "line": 66,
         "column": 43,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 69,
+        "line": 67,
         "column": 2,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 70,
+        "line": 68,
         "column": 11,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 71,
+        "line": 69,
         "column": 19,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 72,
+        "line": 70,
         "column": 51,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 73,
+        "line": 71,
         "column": 50,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 74,
+        "line": 72,
         "column": 2,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 75,
+        "line": 73,
         "column": 62,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 76,
+        "line": 74,
         "column": 88,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 77,
+        "line": 75,
         "column": 11,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 78,
+        "line": 76,
         "column": 23,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 79,
+        "line": 77,
         "column": 80,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 80,
+        "line": 78,
         "column": 31,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 81,
+        "line": 79,
         "column": 35,
         "value": "NEWLINE"
     },
     {
         "type": "EOF",
         "lexeme": "",
-        "line": 82,
+        "line": 80,
         "column": 1,
         "value": "EOF"
     }

@@ -1,0 +1,22 @@
+
+[IDENTIFIER(s1) at 2:1][EQUALS(=) at 2:4][STRING(Hello, World!
+) at 2:6]
+[IDENTIFIER(s2) at 3:1][EQUALS(=) at 3:4][STRING(Single quoted string with a tab	and a backslash\) at 3:6]
+
+
+[IDENTIFIER(s3) at 6:1][EQUALS(=) at 6:4][ERROR(Unknown string prefix m) at 6:6][STRING(Triple quoted string with "quotes" and 'single quotes' and a newline
+and a tab	end of string) at 6:7]
+
+
+[IDENTIFIER(ra) at 10:1][EQUALS(=) at 10:4][STRING(hello\nworld) at 10:6]
+[IDENTIFIER(rb) at 11:1][EQUALS(=) at 11:4][STRING(tab\there) at 11:6]
+[IDENTIFIER(rc) at 12:1][EQUALS(=) at 12:4][STRING(path\to\file) at 12:6]
+[IDENTIFIER(rd) at 13:1][EQUALS(=) at 13:4][STRING(single quoted raw) at 13:6]
+
+
+[IDENTIFIER(re) at 16:1][EQUALS(=) at 16:4][STRING(multi
+line
+raw) at 16:6]
+
+[IDENTIFIER(rf) at 20:1][EQUALS(=) at 20:4][STRING(has "inner" quotes) at 20:6]
+[EOF(EOF) at 21:1]

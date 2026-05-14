@@ -1,0 +1,14 @@
+
+[IDENTIFIER(a) at 2:1][NAMESPACE(::) at 2:3][EQUALS(=) at 2:5][NUMBER(42) at 2:7]
+
+
+[DEF(def) at 5:1][IDENTIFIER(main) at 5:5][LPAREN(() at 5:9][RPAREN()) at 5:10][COLON(:) at 5:11]
+{
+    [IF(if) at 6:5]    [TRUE(true) at 6:8]    [COLON(:) at 6:12]
+    {
+        [IDENTIFIER(a) at 7:2]        [EQUALS(=) at 7:4]        [NUMBER(10) at 7:6]
+    }
+    [IDENTIFIER(print) at 8:5]    [LPAREN(() at 8:10]    [STRING(Hello, World!
+) at 8:11]    [RPAREN()) at 8:28]
+}
+[EOF(EOF) at 9:1]

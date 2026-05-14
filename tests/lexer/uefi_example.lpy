@@ -12,11 +12,9 @@ type EFI_SIMPLE_TEXT_INPUT_PROTOCOL:
 type EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL:
     # First arg is implicit self - compiler auto passes the receiver
     # So caller writes: ConOut.Reset(true) not ConOut.Reset(ConOut, true)
-    Reset:
-        (@EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, BOOLEAN) -> EFI_STATUS
-    OutputString:
-        # @CHAR16 expects UTF-16LE encoded string (use u"" prefix for wide strings)
-        (@EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, @CHAR16) -> EFI_STATUS
+    Reset:(@EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, BOOLEAN) -> EFI_STATUS
+    # @CHAR16 expects UTF-16LE encoded string (use u"" prefix for wide strings)
+    OutputString:(@EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, @CHAR16) -> EFI_STATUS
 
 type EFI_TABLE_HEADER:
     Signature:  UINT64

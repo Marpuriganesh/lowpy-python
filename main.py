@@ -1,7 +1,6 @@
 import argparse
 import os
 import json
-from functools import partial
 from concurrent.futures import ThreadPoolExecutor
 from src.lexer import Lexer, TokenType
 
@@ -12,7 +11,7 @@ def gather_test_files(test_dir):
         return [os.path.join(test_dir,f) for f in os.listdir(test_dir) if f.endswith(".lpy")]
     return []
 
-def process_file(path, generate=False):
+def process_file(path, generate=False, generate_text=False):
     with open(path, "r") as f:
         code = f.read()
     lexer = Lexer(code)
@@ -22,6 +21,23 @@ def process_file(path, generate=False):
         output_file_path = path + ".snap"
         with open(output_file_path, "w") as exp_file:
             json.dump(token_dict, exp_file, indent=4)
+    if generate_text:
+        output_file_path = path + ".txt"
+        indent = 0
+        with open(output_file_path, "w") as exp_file:
+            for tok in tokens:
+                    match tok.type:
+                        case TokenType.INDENT:
+                            exp_file.write("    " * indent + "{\n")
+                            indent += 1
+                        case TokenType.DEDENT:
+                            indent -= 1
+                            exp_file.write("    " * indent + "}\n")
+                        case TokenType.NEWLINE:
+                            exp_file.write("\n")
+                        case _:
+                            exp_file.write("    " * indent + repr(tok))
+            exp_file.write("\n")
     return path, tokens
 
 
@@ -33,6 +49,8 @@ def main():
     parser.add_argument('-f', '--file', help='source .lpy file',required=False,default=None)
 
     parser.add_argument('-g','--generate',help='generate expected output for a test file', action='store_true', required=False, default=False)
+    
+    parser.add_argument('-gt','--generate-text',help='generate expected output as text for a test file', action='store_true', required=False, default=False)
 
     parser.add_argument('-j', '--jobs', type=int, default=4, help='number of threads for parallel processing (default: 4)', required=False)
 
@@ -44,7 +62,7 @@ def main():
                         help='verbose output', required=False)
     args = parser.parse_args()
         
-    print(f"Running {args.test} tests with file={args.file}, generate={args.generate}, jobs={args.jobs}, output={args.output}, verbose={args.verbose}")
+    print(f"Running {args.test} tests with file={args.file}, generate={args.generate}, jobs={args.jobs}, output={args.output}, verbose={args.verbose}, generate_text={args.generate_text}")
     if args.test == "lexer":
         if args.file is None:
             test_files = gather_test_files(os.path.join(BASE_TEST_DIR, "lexer"))
@@ -57,7 +75,7 @@ def main():
         
         print(f"Processing files: {test_files}")
         with ThreadPoolExecutor(max_workers=args.jobs) as executor:
-            results = list(executor.map(lambda f: process_file(f, args.generate), test_files))
+            results = list(executor.map(lambda f: process_file(f, args.generate, args.generate_text), test_files))
             
         
         if args.verbose:
@@ -79,6 +97,8 @@ def main():
                 print("")
         if args.generate:
            print(f"following expected output files generated: {[f+'.snap' for f in test_files]}")
+        if args.generate_text:
+            print(f"following expected text files generated: {[f+'.txt' for f in test_files]}")
         elif args.test == "parser":
             print("Parser tests not implemented yet")
 if __name__ == "__main__":

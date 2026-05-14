@@ -1,0 +1,72 @@
+
+[IMPORT(import) at 2:1][IDENTIFIER(math) at 2:8][AS(as) at 2:13][IDENTIFIER(m) at 2:16]
+
+
+[PUB(pub) at 5:1][DEF(def) at 5:5][IDENTIFIER(add) at 5:9][LPAREN(() at 5:12][IDENTIFIER(x) at 5:13][COLON(:) at 5:14][I32(i32) at 5:16][COMMA(,) at 5:19][IDENTIFIER(y) at 5:21][COLON(:) at 5:22][I32(i32) at 5:24][COMMA(,) at 5:27][COMMA(,) at 5:29][IDENTIFIER(z) at 5:30][COLON(:) at 5:31][AT(@) at 5:33][I32(i32) at 5:34][RPAREN()) at 5:37][ARROW(->) at 5:39][I32(i32) at 5:42][COLON(:) at 5:45]
+{
+    [RETURN(return) at 6:5]    [IDENTIFIER(x) at 6:12]    [PLUS(+) at 6:14]    [IDENTIFIER(y) at 6:16]    [PLUS(+) at 6:18]    [STAR(*) at 6:20]    [IDENTIFIER(z) at 6:21]
+
+}
+
+[IF(if) at 9:1][TRUE(true) at 9:4][AND(and) at 9:9][NOT(not) at 9:13][FALSE(false) at 9:17][COLON(:) at 9:22]
+{
+    [IDENTIFIER(a) at 10:5]    [EQUALS(=) at 10:7]    [NUMBER(10) at 10:9]
+    [IDENTIFIER(b) at 11:5]    [EQUALS(=) at 11:7]    [NUMBER(20) at 11:9]
+    [IDENTIFIER(c) at 12:5]    [EQUALS(=) at 12:7]    [IDENTIFIER(a) at 12:9]    [PLUS(+) at 12:11]    [IDENTIFIER(b) at 12:13]
+}
+[ELIF(elif) at 13:1][FALSE(false) at 13:6][COLON(:) at 13:11]
+{
+    [IDENTIFIER(c) at 14:5]    [EQUALS(=) at 14:7]    [NUMBER(0) at 14:9]
+}
+[ELSE(else) at 15:1][COLON(:) at 15:5]
+{
+    [IDENTIFIER(c) at 16:5]    [EQUALS(=) at 16:7]    [MINUS(-) at 16:9]    [NUMBER(1) at 16:10]
+
+}
+
+[FOR(for) at 19:1][IDENTIFIER(i) at 19:5][IN(in) at 19:7][NUMBER(10) at 19:10][COLON(:) at 19:12]
+{
+    [IF(if) at 20:5]    [IDENTIFIER(i) at 20:8]    [EQEQ(==) at 20:10]    [NUMBER(5) at 20:13]    [COLON(:) at 20:14]
+    {
+        [BREAK(break) at 21:9]
+    }
+    [ELSE(else) at 22:5]    [COLON(:) at 22:9]
+    {
+        [CONTINUE(continue) at 23:9]
+
+    }
+}
+[CLASS(class) at 25:1][IDENTIFIER(Point) at 25:7][COLON(:) at 25:12]
+{
+    [IDENTIFIER(x) at 26:5]    [COLON(:) at 26:6]    [F64(f64) at 26:8]
+    [IDENTIFIER(y) at 27:5]    [COLON(:) at 27:6]    [F64(f64) at 27:8]
+
+    [DEF(def) at 29:5]    [DUNDER_INIT(__init__) at 29:9]    [LPAREN(() at 29:17]    [SELF(self) at 29:18]    [COMMA(,) at 29:22]    [IDENTIFIER(x) at 29:24]    [COLON(:) at 29:25]    [F64(f64) at 29:27]    [COMMA(,) at 29:30]    [IDENTIFIER(y) at 29:32]    [COLON(:) at 29:33]    [F64(f64) at 29:35]    [RPAREN()) at 29:38]    [COLON(:) at 29:39]
+    {
+        [SELF(self) at 30:9]        [DOT(.) at 30:13]        [IDENTIFIER(x) at 30:14]        [EQUALS(=) at 30:16]        [IDENTIFIER(x) at 30:18]
+        [SELF(self) at 31:9]        [DOT(.) at 31:13]        [IDENTIFIER(y) at 31:14]        [EQUALS(=) at 31:16]        [IDENTIFIER(y) at 31:18]
+
+    }
+}
+
+[IDENTIFIER(x) at 34:1][COLON(:) at 34:2][I32(i32) at 34:4][EQUALS(=) at 34:8][NUMBER(100) at 34:10]
+[IDENTIFIER(y) at 35:1][COLON(:) at 35:2][F64(f64) at 35:4][EQUALS(=) at 35:8][NUMBER(3) at 35:10]
+[IDENTIFIER(z) at 36:1][EQUALS(=) at 36:3][IDENTIFIER(x) at 36:5][PLUS(+) at 36:7][IDENTIFIER(y) at 36:9][STAR(*) at 36:11][NUMBER(2) at 36:13]
+
+
+[IDENTIFIER(result) at 39:1][EQUALS(=) at 39:8][IDENTIFIER(m) at 39:10][NAMESPACE(::) at 39:11][IDENTIFIER(sqrt) at 39:13][LPAREN(() at 39:17][NUMBER(25) at 39:18][RPAREN()) at 39:20]
+
+
+[IDENTIFIER(ptr) at 42:1][EQUALS(=) at 42:5][ADDR(addr) at 42:7][IDENTIFIER(x) at 42:12]
+[IDENTIFIER(value) at 43:1][EQUALS(=) at 43:7][STAR(*) at 43:9][IDENTIFIER(ptr) at 43:10]
+[IDENTIFIER(ref) at 44:1][EQUALS(=) at 44:5][AMP(&) at 44:7][IDENTIFIER(x) at 44:8]
+
+
+[IF(if) at 47:1][IDENTIFIER(x) at 47:4][GE(>=) at 47:6][NUMBER(10) at 47:9][AND(and) at 47:12][IDENTIFIER(x) at 47:16][LE(<=) at 47:18][NUMBER(100) at 47:21][COLON(:) at 47:24]
+{
+    [IDENTIFIER(ok) at 48:5]    [EQUALS(=) at 48:8]    [TRUE(true) at 48:10]
+
+}
+
+[IDENTIFIER(final) at 51:1][EQUALS(=) at 51:7][NUMBER(42) at 51:9]
+[EOF(EOF) at 52:1]

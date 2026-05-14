@@ -896,7 +896,7 @@
         "value": "def"
     },
     {
-        "type": "IDENTIFIER",
+        "type": "DUNDER_INIT",
         "lexeme": "__init__",
         "line": 29,
         "column": 9,
@@ -910,7 +910,7 @@
         "value": "("
     },
     {
-        "type": "IDENTIFIER",
+        "type": "SELF",
         "lexeme": "self",
         "line": 29,
         "column": 18,
@@ -1001,7 +1001,7 @@
         "value": "INDENT"
     },
     {
-        "type": "IDENTIFIER",
+        "type": "SELF",
         "lexeme": "self",
         "line": 30,
         "column": 9,
@@ -1043,7 +1043,7 @@
         "value": "NEWLINE"
     },
     {
-        "type": "IDENTIFIER",
+        "type": "SELF",
         "lexeme": "self",
         "line": 31,
         "column": 9,

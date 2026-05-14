@@ -1,0 +1,95 @@
+
+
+
+
+[TYPE(type) at 5:1][IDENTIFIER(EFI_SIMPLE_TEXT_INPUT_PROTOCOL) at 5:6][COLON(:) at 5:36]
+{
+    [PASS(pass) at 6:5]
+
+}
+
+
+
+
+[TYPE(type) at 12:1][IDENTIFIER(EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL) at 12:6][COLON(:) at 12:37]
+{
+
+
+    [IDENTIFIER(Reset) at 15:5]    [COLON(:) at 15:10]    [LPAREN(() at 15:11]    [AT(@) at 15:12]    [IDENTIFIER(EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL) at 15:13]    [COMMA(,) at 15:44]    [IDENTIFIER(BOOLEAN) at 15:46]    [RPAREN()) at 15:53]    [ARROW(->) at 15:55]    [IDENTIFIER(EFI_STATUS) at 15:58]
+
+    [IDENTIFIER(OutputString) at 17:5]    [COLON(:) at 17:17]    [LPAREN(() at 17:18]    [AT(@) at 17:19]    [IDENTIFIER(EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL) at 17:20]    [COMMA(,) at 17:51]    [AT(@) at 17:53]    [IDENTIFIER(CHAR16) at 17:54]    [RPAREN()) at 17:60]    [ARROW(->) at 17:62]    [IDENTIFIER(EFI_STATUS) at 17:65]
+
+}
+[TYPE(type) at 19:1][IDENTIFIER(EFI_TABLE_HEADER) at 19:6][COLON(:) at 19:22]
+{
+    [IDENTIFIER(Signature) at 20:5]    [COLON(:) at 20:14]    [IDENTIFIER(UINT64) at 20:17]
+    [IDENTIFIER(Revision) at 21:5]    [COLON(:) at 21:13]    [IDENTIFIER(UINT32) at 21:17]
+    [IDENTIFIER(HeaderSize) at 22:5]    [COLON(:) at 22:15]    [IDENTIFIER(UINT32) at 22:17]
+    [IDENTIFIER(CRC32) at 23:5]    [COLON(:) at 23:10]    [IDENTIFIER(UINT32) at 23:17]
+    [IDENTIFIER(Reserved) at 24:5]    [COLON(:) at 24:13]    [IDENTIFIER(UINT32) at 24:17]
+
+}
+[TYPE(type) at 26:1][IDENTIFIER(EFI_SYSTEM_TABLE) at 26:6][COLON(:) at 26:22]
+{
+    [IDENTIFIER(hrd) at 27:5]    [COLON(:) at 27:8]    [IDENTIFIER(EFI_TABLE_HEADER) at 27:23]
+    [IDENTIFIER(FirmwareVendor) at 28:5]    [COLON(:) at 28:19]    [AT(@) at 28:23]    [IDENTIFIER(CHAR16) at 28:24]
+    [IDENTIFIER(FirmwareVersion) at 29:5]    [COLON(:) at 29:20]    [IDENTIFIER(UINT32) at 29:23]
+    [IDENTIFIER(ConsoleInHandle) at 30:5]    [COLON(:) at 30:20]    [IDENTIFIER(EFI_HANDLE) at 30:23]
+    [IDENTIFIER(ConIn) at 31:5]    [COLON(:) at 31:10]    [AT(@) at 31:23]    [IDENTIFIER(EFI_SIMPLE_TEXT_INPUT_PROTOCOL) at 31:24]
+    [IDENTIFIER(ConsoleOutHandle) at 32:5]    [COLON(:) at 32:21]    [IDENTIFIER(EFI_HANDLE) at 32:23]
+    [IDENTIFIER(ConOut) at 33:5]    [COLON(:) at 33:11]    [AT(@) at 33:23]    [IDENTIFIER(EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL) at 33:24]
+
+}
+[TYPE(type) at 35:1][IDENTIFIER(Packet) at 35:6][COLON(:) at 35:12]
+{
+    [IDENTIFIER(header) at 36:5]    [COLON(:) at 36:11]    [U8(u8) at 36:13]
+    [IDENTIFIER(length) at 37:5]    [COLON(:) at 37:11]    [U16(u16) at 37:13]
+    [IDENTIFIER(data) at 38:5]    [COLON(:) at 38:9]    [AT(@) at 38:11]    [U8(u8) at 38:12]
+    [DUNDER_TYPE_LAYOUT(__layout__) at 39:5]    [LPAREN(() at 39:15]    [IDENTIFIER(packed) at 39:16]    [COMMA(,) at 39:22]    [IDENTIFIER(alignment) at 39:24]    [EQUALS(=) at 39:33]    [NUMBER(4) at 39:34]    [RPAREN()) at 39:35]
+
+}
+
+
+
+[DEF(def) at 44:1][IDENTIFIER(efi_main) at 44:5][LPAREN(() at 44:13][IDENTIFIER(ImageHandle) at 44:14][COLON(:) at 44:25][IDENTIFIER(EFI_HANDLE) at 44:27][COMMA(,) at 44:37][IDENTIFIER(SystemTable) at 44:39][COLON(:) at 44:50][AT(@) at 44:52][IDENTIFIER(EFI_SYSTEM_TABLE) at 44:53][RPAREN()) at 44:69][ARROW(->) at 44:71][IDENTIFIER(EFI_STATUS) at 44:74][COLON(:) at 44:84]
+
+{
+
+
+    [IDENTIFIER(SystemTable) at 48:5]    [DOT(.) at 48:16]    [IDENTIFIER(ConOut) at 48:17]    [DOT(.) at 48:23]    [IDENTIFIER(Reset) at 48:24]    [LPAREN(() at 48:29]    [TRUE(true) at 48:30]    [RPAREN()) at 48:34]
+
+
+
+
+
+    [IDENTIFIER(SystemTable) at 54:5]    [DOT(.) at 54:16]    [IDENTIFIER(ConOut) at 54:17]    [DOT(.) at 54:23]    [IDENTIFIER(OutputString) at 54:24]    [LPAREN(() at 54:36]    [WIDE_STRING(Testing...
+) at 54:37]    [RPAREN()) at 54:54]
+
+
+    [WHILE(while) at 57:5]    [TRUE(true) at 57:11]    [COLON(:) at 57:15]
+    {
+        [PASS(pass) at 58:9]
+
+    }
+
+    [RETURN(return) at 61:5]    [NUMBER(0) at 61:12]
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[EOF(EOF) at 80:1]

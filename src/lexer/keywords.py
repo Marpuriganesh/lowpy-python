@@ -50,6 +50,8 @@ class TokenType(Enum):
     SIZEOF = auto()
     ALIGNOF = auto()
     ADDR = auto()
+    SELF = auto()
+    PASS = auto()
 
     # -------- TYPES --------
     I8 = auto()
@@ -163,6 +165,8 @@ KEYWORDS = {
     "sizeof": TokenType.SIZEOF,
     "alignof": TokenType.ALIGNOF,
     "addr": TokenType.ADDR,
+    "self": TokenType.SELF,
+    "pass": TokenType.PASS,
     # primitive types
     "i8": TokenType.I8,
     "i16": TokenType.I16,
