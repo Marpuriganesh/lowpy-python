@@ -34,6 +34,12 @@ type EFI_SYSTEM_TABLE:
     ConsoleOutHandle: EFI_HANDLE
     ConOut:           @EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL
 
+type Packet:
+    header: u8
+    length: u16
+    data: @u8
+    __layout__(packed, alignment=4)
+
 # UEFI entry point - called by firmware
 # ImageHandle: handle to this image
 # SystemTable: pointer to UEFI system table (access to all firmware services)
