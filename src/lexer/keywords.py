@@ -16,6 +16,7 @@ class TokenType(Enum):
     CONST = auto()
     TYPE = auto()
     CLASS = auto()
+    ENUM = auto()
     REDEF = auto()
     DEF = auto()
 
@@ -49,7 +50,6 @@ class TokenType(Enum):
     UNSAFE = auto()
     SIZEOF = auto()
     ALIGNOF = auto()
-    ADDR = auto()
     SELF = auto()
     PASS = auto()
 
@@ -73,7 +73,6 @@ class TokenType(Enum):
 
     STRING = auto()
     WIDE_STRING = auto()
-    FORMATTED_STRING = auto()
 
     # -------- OPERATORS --------
     PLUS = auto()
@@ -126,6 +125,7 @@ class TokenType(Enum):
     DUNDER_LT = auto()
     DUNDER_LEN = auto()
     DUNDER_GETITEM = auto()
+    DUNDER_SETITEM = auto()
     DUNDER_TYPE_LAYOUT = auto()
 
     EOF = auto()
@@ -137,6 +137,7 @@ KEYWORDS = {
     "const": TokenType.CONST,
     "type": TokenType.TYPE,
     "class": TokenType.CLASS,
+    "enum": TokenType.ENUM,
     "redef": TokenType.REDEF,
     "def": TokenType.DEF,
     "return": TokenType.RETURN,
@@ -164,7 +165,6 @@ KEYWORDS = {
     "unsafe": TokenType.UNSAFE,
     "sizeof": TokenType.SIZEOF,
     "alignof": TokenType.ALIGNOF,
-    "addr": TokenType.ADDR,
     "self": TokenType.SELF,
     "pass": TokenType.PASS,
     # primitive types
@@ -233,6 +233,7 @@ DUNDER_KEYWORDS = {
     "__lt__": TokenType.DUNDER_LT,
     "__len__": TokenType.DUNDER_LEN,
     "__getitem__": TokenType.DUNDER_GETITEM,
+    "__setitem__": TokenType.DUNDER_SETITEM,
     "__layout__": TokenType.DUNDER_TYPE_LAYOUT,
 }
 

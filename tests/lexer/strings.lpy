@@ -18,3 +18,5 @@ line
 raw"""
 
 rf = r"""has "inner" quotes"""
+
+formatted_string = f"Value of s1: {s1}"

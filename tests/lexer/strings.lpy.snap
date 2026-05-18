@@ -315,9 +315,51 @@
         "value": "NEWLINE"
     },
     {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 21,
+        "column": 1,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "formatted_string",
+        "line": 22,
+        "column": 1,
+        "value": "formatted_string"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 22,
+        "column": 18,
+        "value": "="
+    },
+    {
+        "type": "ERROR",
+        "lexeme": "f-strings are not supported for static allocation it should be used with an allocator",
+        "line": 22,
+        "column": 20,
+        "value": "f-strings are not supported for static allocation it should be used with an allocator"
+    },
+    {
+        "type": "STRING",
+        "lexeme": "Value of s1: {s1}",
+        "line": 22,
+        "column": 21,
+        "value": "Value of s1: {s1}"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 22,
+        "column": 40,
+        "value": "NEWLINE"
+    },
+    {
         "type": "EOF",
         "lexeme": "",
-        "line": 21,
+        "line": 23,
         "column": 1,
         "value": "EOF"
     }

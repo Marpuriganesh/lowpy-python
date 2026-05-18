@@ -208,7 +208,13 @@ class Lexer:
                 case "r":
                     skip_escape = True
                 case "f":
-                    pass
+                    return Token(
+                        TokenType.ERROR,
+                        "f-strings are not supported for static allocation it should be used with an allocator",
+                        start_line,
+                        start_col,
+                        value="f-strings are not supported for static allocation it should be used with an allocator",
+                    )
                 case "u":
                     string_type = TokenType.WIDE_STRING
                 case _:

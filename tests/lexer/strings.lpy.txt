@@ -19,4 +19,6 @@ line
 raw) at 16:6]
 
 [IDENTIFIER(rf) at 20:1][EQUALS(=) at 20:4][STRING(has "inner" quotes) at 20:6]
-[EOF(EOF) at 21:1]
+
+[IDENTIFIER(formatted_string) at 22:1][EQUALS(=) at 22:18][ERROR(f-strings are not supported for static allocation it should be used with an allocator) at 22:20][STRING(Value of s1: {s1}) at 22:21]
+[EOF(EOF) at 23:1]

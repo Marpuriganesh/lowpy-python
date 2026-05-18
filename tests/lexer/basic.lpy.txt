@@ -57,7 +57,7 @@
 [IDENTIFIER(result) at 39:1][EQUALS(=) at 39:8][IDENTIFIER(m) at 39:10][NAMESPACE(::) at 39:11][IDENTIFIER(sqrt) at 39:13][LPAREN(() at 39:17][NUMBER(25) at 39:18][RPAREN()) at 39:20]
 
 
-[IDENTIFIER(ptr) at 42:1][EQUALS(=) at 42:5][ADDR(addr) at 42:7][IDENTIFIER(x) at 42:12]
+[IDENTIFIER(ptr) at 42:1][EQUALS(=) at 42:5][IDENTIFIER(addr) at 42:7][IDENTIFIER(x) at 42:12]
 [IDENTIFIER(value) at 43:1][EQUALS(=) at 43:7][STAR(*) at 43:9][IDENTIFIER(ptr) at 43:10]
 [IDENTIFIER(ref) at 44:1][EQUALS(=) at 44:5][AMP(&) at 44:7][IDENTIFIER(x) at 44:8]
 

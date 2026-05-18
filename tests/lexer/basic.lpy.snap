@@ -1358,7 +1358,7 @@
         "value": "="
     },
     {
-        "type": "ADDR",
+        "type": "IDENTIFIER",
         "lexeme": "addr",
         "line": 42,
         "column": 7,
