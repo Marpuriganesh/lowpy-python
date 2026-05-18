@@ -150,6 +150,48 @@ class Lexer:
         value = 0
         fraction_part = 0.0
         exponent_part = 0
+        
+        while self.peek() == "0" and (self.peek(1) in ("x", "X", "b", "B", "o", "O")):
+            digit_count = 0
+            base_char = self.peek(1).lower()
+            self.advance()  # consume '0'
+            self.advance()  # consume base char
+
+            if base_char == "x":
+                base = 16
+                valid_digits = "0123456789abcdefABCDEF"
+            elif base_char == "b":
+                base = 2
+                valid_digits = "01"
+            elif base_char == "o":
+                base = 8
+                valid_digits = "01234567"
+            
+            
+
+            while self.peek() in valid_digits or (
+                self.peek() == "_" and self.peek(1) in valid_digits
+            ):
+                if self.peek() == "_":
+                    self.advance()  # skip underscore
+                    continue
+                digit = int(self.peek(), 16) if base == 16 else int(self.peek())
+                value = value * base + digit
+                self.advance()
+                digit_count += 1
+            
+            if digit_count == 0:
+                self.advance()  # consume the invalid character
+                return Token(
+                    TokenType.ERROR,
+                    f"No valid digits after '0{base_char}'",
+                    self.line,
+                    self.column,
+                    value=f"No valid digits after '0{base_char}'",
+                )
+            
+            text = self.source[start : self.pos]
+            return Token(TokenType.NUMBER, text, self.line, start_col, value=value)
 
         while self.peek().isdigit() or (self.peek() == "_" and self.peek(1).isdigit()):
             if self.peek() == "_":

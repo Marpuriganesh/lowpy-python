@@ -1,24 +1,54 @@
 
 [IDENTIFIER(na) at 2:1][EQUALS(=) at 2:4][NUMBER(42) at 2:6]
 
+[IDENTIFIER(nb) at 4:1][EQUALS(=) at 4:4][NUMBER(1000000) at 4:6]
 
-[IDENTIFIER(nb) at 5:1][EQUALS(=) at 5:4][NUMBER(1000000) at 5:6]
+[IDENTIFIER(nc) at 6:1][EQUALS(=) at 6:4][NUMBER(3.14) at 6:6]
 
+[IDENTIFIER(nd) at 8:1][EQUALS(=) at 8:4][NUMBER(10.55) at 8:6]
 
-[IDENTIFIER(nc) at 8:1][EQUALS(=) at 8:4][NUMBER(3.14) at 8:6]
+[IDENTIFIER(ne) at 10:1][EQUALS(=) at 10:4][NUMBER(15000000000.0) at 10:6]
 
+[IDENTIFIER(nf) at 12:1][EQUALS(=) at 12:4][NUMBER(0.00022999999999999998) at 12:6]
 
-[IDENTIFIER(nd) at 11:1][EQUALS(=) at 11:4][NUMBER(10.55) at 11:6]
+[IDENTIFIER(ng) at 14:1][EQUALS(=) at 14:4][NUMBER(1000000) at 14:6]
 
-
-[IDENTIFIER(ne) at 14:1][EQUALS(=) at 14:4][NUMBER(15000000000.0) at 14:6]
-
-
-[IDENTIFIER(nf) at 17:1][EQUALS(=) at 17:4][NUMBER(0.00022999999999999998) at 17:6]
-
-
-[IDENTIFIER(ng) at 20:1][EQUALS(=) at 20:4][NUMBER(1000000) at 20:6]
+[IDENTIFIER(nh) at 16:1][EQUALS(=) at 16:4][NUMBER(150000000000) at 16:6]
 
 
-[IDENTIFIER(nh) at 23:1][EQUALS(=) at 23:4][NUMBER(150000000000) at 23:6]
-[EOF(EOF) at 24:1]
+[IDENTIFIER(ni) at 19:1][EQUALS(=) at 19:4][NUMBER(255) at 19:6]
+
+[IDENTIFIER(nj) at 21:1][EQUALS(=) at 21:4][NUMBER(255) at 21:6]
+
+[IDENTIFIER(nk) at 23:1][EQUALS(=) at 23:4][NUMBER(43981) at 23:6]
+
+[IDENTIFIER(nl) at 25:1][EQUALS(=) at 25:4][NUMBER(65535) at 25:6]
+
+[IDENTIFIER(nm) at 27:1][EQUALS(=) at 27:4][NUMBER(3735928559) at 27:6]
+
+
+[IDENTIFIER(nn) at 30:1][EQUALS(=) at 30:4][NUMBER(10) at 30:6]
+
+[IDENTIFIER(no) at 32:1][EQUALS(=) at 32:4][NUMBER(10) at 32:6]
+
+[IDENTIFIER(np) at 34:1][EQUALS(=) at 34:4][NUMBER(255) at 34:6]
+
+[IDENTIFIER(nq) at 36:1][EQUALS(=) at 36:4][NUMBER(0) at 36:6]
+
+
+[IDENTIFIER(nr) at 39:1][EQUALS(=) at 39:4][NUMBER(15) at 39:6]
+
+[IDENTIFIER(ns) at 41:1][EQUALS(=) at 41:4][NUMBER(15) at 41:6]
+
+[IDENTIFIER(nt) at 43:1][EQUALS(=) at 43:4][NUMBER(511) at 43:6]
+
+[IDENTIFIER(nu) at 45:1][EQUALS(=) at 45:4][NUMBER(511) at 45:6]
+
+
+[IDENTIFIER(nv) at 48:1][EQUALS(=) at 48:4][NUMBER(0) at 48:6]
+
+
+[IDENTIFIER(ne1) at 51:1][EQUALS(=) at 51:5][ERROR(No valid digits after '0x') at 51:10]
+[IDENTIFIER(ne2) at 52:1][EQUALS(=) at 52:5][ERROR(No valid digits after '0b') at 52:10]
+[IDENTIFIER(ne3) at 53:1][EQUALS(=) at 53:5][ERROR(No valid digits after '0o') at 53:10]
+[IDENTIFIER(ne4) at 54:1][EQUALS(=) at 54:5][ERROR(No valid digits after '0x') at 54:10][IDENTIFIER(G) at 54:10][EOF(EOF) at 54:51]

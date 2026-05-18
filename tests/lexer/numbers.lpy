@@ -1,23 +1,54 @@
 # basic int
 na = 42
-
 # underscores in int
 nb = 1_000_000
-
 # basic float
 nc = 3.14
-
 # underscores in float
 nd = 1_0.5_5
-
 # scientific notation
 ne = 1.5e10
-
 # negative exponent
 nf = 2.3e-4
-
 # uppercase E, positive sign
 ng = 1E+6
-
 # underscores in both parts
 nh = 1_5e1_0
+
+# hex lowercase x
+ni = 0xFF
+# hex uppercase X
+nj = 0XFF
+# hex mixed case digits
+nk = 0xaBcD
+# hex with underscores
+nl = 0xFF_FF
+# hex large value
+nm = 0xDEAD_BEEF
+
+# binary lowercase b
+nn = 0b1010
+# binary uppercase B
+no = 0B1010
+# binary with underscores
+np = 0b1111_1111
+# binary zero
+nq = 0b0
+
+# octal lowercase o
+nr = 0o17
+# octal uppercase O
+ns = 0O17
+# octal with underscores
+nt = 0o7_7_7
+# octal max single digit
+nu = 0o777
+
+# plain zero (should NOT trigger prefix branch)
+nv = 0
+
+# error cases
+ne1 = 0x        # ERROR: no digits after prefix
+ne2 = 0b2       # ERROR: invalid digit for base 2
+ne3 = 0o9       # ERROR: invalid digit for base 8
+ne4 = 0xGG      # ERROR: invalid digit for base 16

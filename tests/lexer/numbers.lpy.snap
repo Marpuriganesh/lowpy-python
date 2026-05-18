@@ -38,274 +38,337 @@
         "type": "NEWLINE",
         "lexeme": "\\n",
         "line": 3,
-        "column": 1,
-        "value": "NEWLINE"
-    },
-    {
-        "type": "NEWLINE",
-        "lexeme": "\\n",
-        "line": 4,
         "column": 21,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "nb",
-        "line": 5,
+        "line": 4,
         "column": 1,
         "value": "nb"
     },
     {
         "type": "EQUALS",
         "lexeme": "=",
-        "line": 5,
+        "line": 4,
         "column": 4,
         "value": "="
     },
     {
         "type": "NUMBER",
         "lexeme": "1_000_000",
-        "line": 5,
+        "line": 4,
         "column": 6,
         "value": 1000000
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 5,
+        "line": 4,
         "column": 15,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 6,
-        "column": 1,
-        "value": "NEWLINE"
-    },
-    {
-        "type": "NEWLINE",
-        "lexeme": "\\n",
-        "line": 7,
+        "line": 5,
         "column": 14,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "nc",
-        "line": 8,
+        "line": 6,
         "column": 1,
         "value": "nc"
     },
     {
         "type": "EQUALS",
         "lexeme": "=",
-        "line": 8,
+        "line": 6,
         "column": 4,
         "value": "="
     },
     {
         "type": "NUMBER",
         "lexeme": "3.14",
-        "line": 8,
+        "line": 6,
         "column": 6,
         "value": 3.14
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 8,
+        "line": 6,
         "column": 10,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 9,
-        "column": 1,
-        "value": "NEWLINE"
-    },
-    {
-        "type": "NEWLINE",
-        "lexeme": "\\n",
-        "line": 10,
+        "line": 7,
         "column": 23,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "nd",
-        "line": 11,
+        "line": 8,
         "column": 1,
         "value": "nd"
     },
     {
         "type": "EQUALS",
         "lexeme": "=",
-        "line": 11,
+        "line": 8,
         "column": 4,
         "value": "="
     },
     {
         "type": "NUMBER",
         "lexeme": "1_0.5_5",
-        "line": 11,
+        "line": 8,
         "column": 6,
         "value": 10.55
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 11,
+        "line": 8,
         "column": 13,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 12,
-        "column": 1,
-        "value": "NEWLINE"
-    },
-    {
-        "type": "NEWLINE",
-        "lexeme": "\\n",
-        "line": 13,
+        "line": 9,
         "column": 22,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "ne",
-        "line": 14,
+        "line": 10,
         "column": 1,
         "value": "ne"
     },
     {
         "type": "EQUALS",
         "lexeme": "=",
-        "line": 14,
+        "line": 10,
         "column": 4,
         "value": "="
     },
     {
         "type": "NUMBER",
         "lexeme": "1.5e10",
-        "line": 14,
+        "line": 10,
         "column": 6,
         "value": 15000000000.0
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 14,
+        "line": 10,
         "column": 12,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 15,
-        "column": 1,
-        "value": "NEWLINE"
-    },
-    {
-        "type": "NEWLINE",
-        "lexeme": "\\n",
-        "line": 16,
+        "line": 11,
         "column": 20,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "nf",
-        "line": 17,
+        "line": 12,
         "column": 1,
         "value": "nf"
     },
     {
         "type": "EQUALS",
         "lexeme": "=",
-        "line": 17,
+        "line": 12,
         "column": 4,
         "value": "="
     },
     {
         "type": "NUMBER",
         "lexeme": "2.3e-4",
-        "line": 17,
+        "line": 12,
         "column": 6,
         "value": 0.00022999999999999998
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 17,
+        "line": 12,
         "column": 12,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 18,
-        "column": 1,
-        "value": "NEWLINE"
-    },
-    {
-        "type": "NEWLINE",
-        "lexeme": "\\n",
-        "line": 19,
+        "line": 13,
         "column": 29,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "ng",
-        "line": 20,
+        "line": 14,
         "column": 1,
         "value": "ng"
     },
     {
         "type": "EQUALS",
         "lexeme": "=",
-        "line": 20,
+        "line": 14,
         "column": 4,
         "value": "="
     },
     {
         "type": "NUMBER",
         "lexeme": "1E+6",
-        "line": 20,
+        "line": 14,
         "column": 6,
         "value": 1000000
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 20,
+        "line": 14,
         "column": 10,
         "value": "NEWLINE"
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
-        "line": 21,
-        "column": 1,
-        "value": "NEWLINE"
-    },
-    {
-        "type": "NEWLINE",
-        "lexeme": "\\n",
-        "line": 22,
+        "line": 15,
         "column": 28,
         "value": "NEWLINE"
     },
     {
         "type": "IDENTIFIER",
         "lexeme": "nh",
-        "line": 23,
+        "line": 16,
         "column": 1,
         "value": "nh"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 16,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "NUMBER",
+        "lexeme": "1_5e1_0",
+        "line": 16,
+        "column": 6,
+        "value": 150000000000
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 16,
+        "column": 13,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 17,
+        "column": 1,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 18,
+        "column": 18,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "ni",
+        "line": 19,
+        "column": 1,
+        "value": "ni"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 19,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "NUMBER",
+        "lexeme": "0xFF",
+        "line": 19,
+        "column": 6,
+        "value": 255
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 19,
+        "column": 10,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 20,
+        "column": 18,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "nj",
+        "line": 21,
+        "column": 1,
+        "value": "nj"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 21,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "NUMBER",
+        "lexeme": "0XFF",
+        "line": 21,
+        "column": 6,
+        "value": 255
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 21,
+        "column": 10,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 22,
+        "column": 24,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "nk",
+        "line": 23,
+        "column": 1,
+        "value": "nk"
     },
     {
         "type": "EQUALS",
@@ -316,23 +379,555 @@
     },
     {
         "type": "NUMBER",
-        "lexeme": "1_5e1_0",
+        "lexeme": "0xaBcD",
         "line": 23,
         "column": 6,
-        "value": 150000000000
+        "value": 43981
     },
     {
         "type": "NEWLINE",
         "lexeme": "\\n",
         "line": 23,
+        "column": 12,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 24,
+        "column": 23,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "nl",
+        "line": 25,
+        "column": 1,
+        "value": "nl"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 25,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "NUMBER",
+        "lexeme": "0xFF_FF",
+        "line": 25,
+        "column": 6,
+        "value": 65535
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 25,
         "column": 13,
         "value": "NEWLINE"
     },
     {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 26,
+        "column": 18,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "nm",
+        "line": 27,
+        "column": 1,
+        "value": "nm"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 27,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "NUMBER",
+        "lexeme": "0xDEAD_BEEF",
+        "line": 27,
+        "column": 6,
+        "value": 3735928559
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 27,
+        "column": 17,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 28,
+        "column": 1,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 29,
+        "column": 21,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "nn",
+        "line": 30,
+        "column": 1,
+        "value": "nn"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 30,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "NUMBER",
+        "lexeme": "0b1010",
+        "line": 30,
+        "column": 6,
+        "value": 10
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 30,
+        "column": 12,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 31,
+        "column": 21,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "no",
+        "line": 32,
+        "column": 1,
+        "value": "no"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 32,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "NUMBER",
+        "lexeme": "0B1010",
+        "line": 32,
+        "column": 6,
+        "value": 10
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 32,
+        "column": 12,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 33,
+        "column": 26,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "np",
+        "line": 34,
+        "column": 1,
+        "value": "np"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 34,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "NUMBER",
+        "lexeme": "0b1111_1111",
+        "line": 34,
+        "column": 6,
+        "value": 255
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 34,
+        "column": 17,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 35,
+        "column": 14,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "nq",
+        "line": 36,
+        "column": 1,
+        "value": "nq"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 36,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "NUMBER",
+        "lexeme": "0b0",
+        "line": 36,
+        "column": 6,
+        "value": 0
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 36,
+        "column": 9,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 37,
+        "column": 1,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 38,
+        "column": 20,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "nr",
+        "line": 39,
+        "column": 1,
+        "value": "nr"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 39,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "NUMBER",
+        "lexeme": "0o17",
+        "line": 39,
+        "column": 6,
+        "value": 15
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 39,
+        "column": 10,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 40,
+        "column": 20,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "ns",
+        "line": 41,
+        "column": 1,
+        "value": "ns"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 41,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "NUMBER",
+        "lexeme": "0O17",
+        "line": 41,
+        "column": 6,
+        "value": 15
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 41,
+        "column": 10,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 42,
+        "column": 25,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "nt",
+        "line": 43,
+        "column": 1,
+        "value": "nt"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 43,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "NUMBER",
+        "lexeme": "0o7_7_7",
+        "line": 43,
+        "column": 6,
+        "value": 511
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 43,
+        "column": 13,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 44,
+        "column": 25,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "nu",
+        "line": 45,
+        "column": 1,
+        "value": "nu"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 45,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "NUMBER",
+        "lexeme": "0o777",
+        "line": 45,
+        "column": 6,
+        "value": 511
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 45,
+        "column": 11,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 46,
+        "column": 1,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 47,
+        "column": 48,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "nv",
+        "line": 48,
+        "column": 1,
+        "value": "nv"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 48,
+        "column": 4,
+        "value": "="
+    },
+    {
+        "type": "NUMBER",
+        "lexeme": "0",
+        "line": 48,
+        "column": 6,
+        "value": 0
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 48,
+        "column": 7,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 49,
+        "column": 1,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 50,
+        "column": 14,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "ne1",
+        "line": 51,
+        "column": 1,
+        "value": "ne1"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 51,
+        "column": 5,
+        "value": "="
+    },
+    {
+        "type": "ERROR",
+        "lexeme": "No valid digits after '0x'",
+        "line": 51,
+        "column": 10,
+        "value": "No valid digits after '0x'"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 51,
+        "column": 48,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "ne2",
+        "line": 52,
+        "column": 1,
+        "value": "ne2"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 52,
+        "column": 5,
+        "value": "="
+    },
+    {
+        "type": "ERROR",
+        "lexeme": "No valid digits after '0b'",
+        "line": 52,
+        "column": 10,
+        "value": "No valid digits after '0b'"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 52,
+        "column": 50,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "ne3",
+        "line": 53,
+        "column": 1,
+        "value": "ne3"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 53,
+        "column": 5,
+        "value": "="
+    },
+    {
+        "type": "ERROR",
+        "lexeme": "No valid digits after '0o'",
+        "line": 53,
+        "column": 10,
+        "value": "No valid digits after '0o'"
+    },
+    {
+        "type": "NEWLINE",
+        "lexeme": "\\n",
+        "line": 53,
+        "column": 50,
+        "value": "NEWLINE"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "ne4",
+        "line": 54,
+        "column": 1,
+        "value": "ne4"
+    },
+    {
+        "type": "EQUALS",
+        "lexeme": "=",
+        "line": 54,
+        "column": 5,
+        "value": "="
+    },
+    {
+        "type": "ERROR",
+        "lexeme": "No valid digits after '0x'",
+        "line": 54,
+        "column": 10,
+        "value": "No valid digits after '0x'"
+    },
+    {
+        "type": "IDENTIFIER",
+        "lexeme": "G",
+        "line": 54,
+        "column": 10,
+        "value": "G"
+    },
+    {
         "type": "EOF",
         "lexeme": "",
-        "line": 24,
-        "column": 1,
+        "line": 54,
+        "column": 51,
         "value": "EOF"
     }
 ]
