@@ -1,0 +1,166 @@
+[
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "value": 5,
+            "kind": "IntLiteral"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "y",
+        "type": {
+            "name": "f32",
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "value": 3.14,
+            "kind": "FloatLiteral"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "z",
+        "type": {
+            "name": "i64",
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "value": 100,
+            "kind": "IntLiteral"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "flag",
+        "type": {
+            "name": "bool",
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "name": "other",
+            "kind": "Identifier"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "name",
+        "type": {
+            "name": "str",
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "name": "some_var",
+            "kind": "Identifier"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "limit",
+        "type": {
+            "name": "i32",
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "value": 100,
+            "kind": "IntLiteral"
+        },
+        "is_const": true,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "msg",
+        "type": {
+            "name": "str",
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "name": "label",
+            "kind": "Identifier"
+        },
+        "is_const": true,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "items",
+        "type": {
+            "name": "list",
+            "generic_args": [
+                {
+                    "name": "i32",
+                    "generic_args": null,
+                    "kind": "TypeNode"
+                }
+            ],
+            "kind": "TypeNode"
+        },
+        "value": {
+            "name": "mylist",
+            "kind": "Identifier"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "pairs",
+        "type": {
+            "name": "list",
+            "generic_args": [
+                {
+                    "name": "str",
+                    "generic_args": null,
+                    "kind": "TypeNode"
+                }
+            ],
+            "kind": "TypeNode"
+        },
+        "value": {
+            "name": "strlist",
+            "kind": "Identifier"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "nested",
+        "type": {
+            "name": "list",
+            "generic_args": [
+                {
+                    "name": "list",
+                    "generic_args": [
+                        {
+                            "name": "i32",
+                            "generic_args": null,
+                            "kind": "TypeNode"
+                        }
+                    ],
+                    "kind": "TypeNode"
+                }
+            ],
+            "kind": "TypeNode"
+        },
+        "value": {
+            "name": "matrix",
+            "kind": "Identifier"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    }
+]
