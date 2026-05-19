@@ -1,5 +1,6 @@
 from .ast import Identifier, IntLiteral, FloatLiteral, TypeNode, VarDecl
 from src.lexer import TokenType, Token
+from typing import Union
 
 PRIMITIVE_TYPES = {
     TokenType.I8,
@@ -17,11 +18,26 @@ PRIMITIVE_TYPES = {
     TokenType.VOID,
 }
 
+Statement = Union[VarDecl,Identifier]  # Extend this with more statement types as needed
+
 
 class Parser:
     def __init__(self, tokens: list[Token]):
         self.tokens = tokens
         self.position = 0
+
+
+    # MARK:---Peek and Advance---
+    def peek(self, offset=0):
+        if self.position + offset < len(self.tokens):
+            return self.tokens[self.position + offset]
+        return None
+
+    def advance(self):
+        value = self.peek()
+        if value is not None:
+            self.position += 1
+        return value
 
     # MARK:---Helper functions---
 
@@ -39,18 +55,9 @@ class Parser:
         pointer_string = self.build_error_pointer_string(line, column)
         return f"{pointer_string}\n{message} at line {line}, column {column}"
 
-    def peek(self, offset=0):
-        if self.position + offset < len(self.tokens):
-            return self.tokens[self.position + offset]
-        return None
+    # MARK:---Parsing functions---
 
-    def advance(self):
-        value = self.peek()
-        if value is not None:
-            self.position += 1
-        return value
-
-    def parse_type(self):
+    def parse_type(self) -> TypeNode:
         token = self.peek()
         token_type = None
         if token.type in PRIMITIVE_TYPES or token.type == TokenType.IDENTIFIER:
@@ -89,7 +96,7 @@ class Parser:
             return TypeNode(name=token.value)
         raise SyntaxError(self.build_error_string("Unexpected type", self.peek().line, self.peek().column))
 
-    def parse_expression(self):
+    def parse_expression(self) -> IntLiteral | FloatLiteral | Identifier:
         # Placeholder for expression parsing logic
         token = self.peek()
         if token.type == TokenType.NUMBER:
@@ -110,7 +117,7 @@ class Parser:
                 )
             )
 
-    def parse_var_decl(self):
+    def parse_var_decl(self) -> VarDecl:
         # Expect 'const'
         is_const = False
 
@@ -160,13 +167,15 @@ class Parser:
 
         return VarDecl(name=name, type=type_node, value=value, is_const=is_const)
 
-    def parse_statements(self):
+    def parse_statements(self) -> list[Statement]:
         statements = []
         # Placeholder for statement parsing logic
         while self.peek() is not None:
             match self.peek().type:
                 case TokenType.IDENTIFIER:
                     statements.append(self.parse_var_decl())
+                case TokenType.DEF:
+                    statements.append(self.parse_function_decl())
                 case TokenType.NEWLINE:
                     self.advance()
                 case TokenType.EOF:
@@ -181,11 +190,11 @@ class Parser:
                     )
         return statements
 
-    def parse_program(self):
+    def parse_program(self) -> list[Statement]:
         try:
             return self.parse_statements()
         except SyntaxError as e:
             raise SyntaxError(f"(Syntax error):\n{e}")
-
-    def parse(self):
+    # MARK:---Entry point---
+    def parse(self)-> list[Statement]:
         return self.parse_program()

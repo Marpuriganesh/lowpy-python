@@ -73,7 +73,7 @@ def process_file(
                     for node in result:
                         ast_text_file.write(f"{node}\n")
         except Exception as e:
-            print("="*30 + " Parsing error " + "="*30)
+            print("="*30 + " Parsing error " + "="*30+"\n")
             print(f"Error occurred while parsing {path}{e}\n")
             print("="*75)
     return path, tokens, ast_as_list
@@ -137,7 +137,7 @@ def main():
     args = parser.parse_args()
 
     print(
-        f"Running {args.test} tests with file={args.file}, generate={args.generate}, jobs={args.jobs}, output={args.output}, verbose={args.verbose}, generate_text={args.generate_text}"
+        f"Running {args.test} tests with file={args.file}, generate={args.generate}, jobs={args.jobs}, output={args.output}, verbose={args.verbose}, generate_text={args.generate_text}\n"+"+"*75
     )
     test_type = TestType.lexer if args.test == "lexer" else TestType.parser
 
@@ -152,7 +152,7 @@ def main():
         )
         return
 
-    print(f"Processing files: {test_files}")
+    print(f"\n### Processing files: {test_files}\n")
     with ThreadPoolExecutor(max_workers=args.jobs) as executor:
         results = list(
             executor.map(
@@ -182,11 +182,11 @@ def main():
             print("")
     if args.generate:
         print(
-            f"following expected output files generated: {[f + '.lex.snap' for f in test_files]}"
+            f"following expected output files generated:\n {[f + '.lex.snap' for f in test_files]}\n"
         )
     if args.generate_text:
         print(
-            f"following expected text files generated: {[f + '.lex.txt' for f in test_files]}"
+            f"following expected text files generated:\n {[f + '.lex.txt' for f in test_files]}"
         )
 
 
