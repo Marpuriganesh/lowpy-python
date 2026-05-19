@@ -1,217 +1,35 @@
-# LowPy (.lpy)
+# LowPy
 
-A systems programming language with Python-like syntax that compiles to C via QBE IR. Designed for UEFI/OS development where you want clean, readable code without sacrificing low-level control.
-
-```
-# This is valid LowPy
-def efi_main(ImageHandle: EFI_HANDLE, SystemTable: @EFI_SYSTEM_TABLE) -> EFI_STATUS:
-    SystemTable.ConOut.Reset(true)
-    SystemTable.ConOut.OutputString(u"Hello from LowPy!\r\n")
-    while true:
-        pass
-    return 0
-```
+> Python-syntax systems programming language targeting UEFI and OS development, compiling via QBE IR.  
+> No GC. No heap by default. No vtables. No hidden runtime overhead.
 
 ---
 
-## Design Philosophy
+## What is LowPy?
 
-- **100% C-compatible** — a C programmer should read `.lpy` without needing docs
-- **Clean pipeline** — `.lpy → Lexer → Parser → AST → QBE IR → QBE → binary`
-- **No magic** — no vtables, no RTTI, no dynamic dispatch, no hidden allocations
-- **Systems-first** — UEFI, OS kernels, embedded, network packet structures
+LowPy is a compiled systems programming language with Python-like syntax. It is designed for low-level targets — bootloaders, UEFI firmware, operating systems, embedded systems, and bare-metal environments — where a traditional runtime is either unavailable or undesirable.
+
+The goal is to explore a simple question:
+
+> *Can modern compiler capabilities be combined with a strict runtime-free-by-default philosophy?*
+
+LowPy does not reject modern language features. It carefully selects which ones can be implemented without hidden costs, and defers the rest to explicit opt-in layers.
 
 ---
 
 ## Pipeline
 
 ```
-.lpy source
-    └── Lexer         (Python)
-    └── Parser        (Python, recursive descent)
-    └── AST           (Python node classes)
-    └── QBE IR emit   (Python → .ssa)
-    └── QBE           (external, produces binary)
+.lpy  →  Lexer  →  Token Preprocessor  →  Parser  →  AST  →  QBE IR  →  Binary
 ```
 
-Backend: [QBE](https://c9x.me/compile/) — not LLVM. Lightweight, hackable, perfect for systems targets.
+- **Lexer** — tokenizes LowPy source, handles indentation, generics substitution hints, dunder methods
+- **Token Preprocessor** — compile-time generic substitution at the token level (not AST-level)
+- **Parser** — recursive descent, produces a typed AST
+- **IR Emitter** — walks the AST and emits [QBE IR](https://c9x.me/compile/)
+- **QBE** — lightweight compiler backend producing x86-64, ARM64, or RISC-V binaries
 
----
-
-## Syntax
-
-### Comments
-```
-# This is a comment
-```
-
-### Variables
-```
-x: UINT32 = 42
-ptr: @UINT32 = &x     # ptr holds address of x
-val: UINT32 = *ptr    # dereference to get 42
-```
-
-### Pointer Syntax
-| Syntax | Meaning |
-|--------|---------|
-| `@Type` | pointer type (type position only) |
-| `*ptr` | dereference |
-| `&var` | address-of |
-
-> Note: `@@` (pointer-to-pointer) is intentionally absent. `&buf` naturally creates a pointer-to-pointer situation without explicit syntax.
-
-### Functions
-```
-def add(a: UINT32, b: UINT32) -> UINT32:
-    return a + b
-```
-
-### Types (pure data structs)
-```
-type EFI_TABLE_HEADER:
-    Signature:  UINT64
-    Revision:   UINT32
-    HeaderSize: UINT32
-    CRC32:      UINT32
-    Reserved:   UINT32
-```
-
-`type` is pure data — no methods, no compiler magic. Fields can be:
-- Plain fields: `name: TypeName`
-- Pointer fields: `vendor: @CHAR16`
-- Function pointer fields: `Reset:(@EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, BOOLEAN) -> EFI_STATUS`
-- Layout directives: `__layout__(packed, alignment=4)`
-
-### Classes (struct + implicit self)
-```
-class Node:
-    value: UINT32
-    next: @Node
-
-    def insert(self, val: UINT32):
-        # compiler rewrites to free function: Node_insert(self, val)
-        pass
-```
-
-`class` adds implicit `self` — the compiler rewrites methods to free functions. No vtables, no inheritance, no dynamic dispatch.
-
-### Function Pointers on Types
-```
-type EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL:
-    Reset:(@EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, BOOLEAN) -> EFI_STATUS
-    OutputString:(@EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, @CHAR16) -> EFI_STATUS
-```
-
-TypeScript-like signature syntax. Assigned with `&`:
-```
-compare: (@Node, @Node) -> int = &my_compare_fn
-```
-
-### Implicit Self
-```
-# LowPy source:
-SystemTable.ConOut.Reset(true)
-
-# Compiler rewrites to (at IR emit stage):
-Reset(SystemTable.ConOut, true)
-```
-
-The first argument of a function pointer field is always the implicit receiver.
-
-### Wide Strings (UTF-16LE)
-```
-SystemTable.ConOut.OutputString(u"Hello UEFI!\r\n")
-```
-
-`u""` prefix = UTF-16LE encoding, 2 bytes per char, `0x0000` null terminator. Maps to `CHAR16*` in UEFI.
-
-In QBE IR:
-```
-data $wstr = { h 72, h 101, h 108, h 108, h 111, h 0 }
-```
-
-### Memory Layout Directives
-```
-type Packet:
-    header: u8
-    length: u16
-    data:   @u8
-    __layout__(packed, alignment=4)
-```
-
-For network packets, hardware registers, UEFI structures.
-
-### C Header Imports
-```
-import "stdio.h" as stdio
-```
-
-### Inline Assembly
-```
-asm:
-    mov rax, 0x1
-    syscall
-```
-
-Core, non-optional requirement. Deferred in current implementation.
-
-### Booleans
-```
-true
-false
-```
-
-### Built-in Numeric Types
-`u8`, `u16`, `u32`, `u64`, `i8`, `i16`, `i32`, `i64`
-
----
-
-## Roadmap
-
-### Phase 1 — libc-dependent
-- Static allocation, stack only
-- Full lexer ✅ (~90% complete)
-- Recursive descent parser 🚧
-- AST node classes 🚧
-- QBE IR emission
-- Basic UEFI hello world compiling end-to-end
-
-### Phase 2 — Optional runtime
-- Arena GC (opt-in)
-- `comptime` — Zig-inspired compile-time execution, replaces macros
-- Shares tree-walking interpreter with the parser
-
-### Phase 3 — Freestanding
-- Own libc
-- Direct syscalls
-- No external dependencies
-
----
-
-## UEFI Example
-
-```python
-type EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL:
-    Reset:(@EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, BOOLEAN) -> EFI_STATUS
-    OutputString:(@EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL, @CHAR16) -> EFI_STATUS
-
-type EFI_SYSTEM_TABLE:
-    hrd:              EFI_TABLE_HEADER
-    FirmwareVendor:   @CHAR16
-    FirmwareVersion:  UINT32
-    ConsoleInHandle:  EFI_HANDLE
-    ConIn:            @EFI_SIMPLE_TEXT_INPUT_PROTOCOL
-    ConsoleOutHandle: EFI_HANDLE
-    ConOut:           @EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL
-
-def efi_main(ImageHandle: EFI_HANDLE, SystemTable: @EFI_SYSTEM_TABLE) -> EFI_STATUS:
-    SystemTable.ConOut.Reset(true)
-    SystemTable.ConOut.OutputString(u"Testing...\r\n")
-    while true:
-        pass
-    return 0
-```
+Phase 1 is implemented entirely in Python. QBE integration is via Python bindings — a dedicated module that either wraps QBE's C API or emits QBE IR as text and invokes the `qbe` binary.
 
 ---
 
@@ -219,26 +37,197 @@ def efi_main(ImageHandle: EFI_HANDLE, SystemTable: @EFI_SYSTEM_TABLE) -> EFI_STA
 
 ```
 lowpy-python/
-├── lexer/
-│   ├── lexer.py         # Main lexer
-│   ├── tokens.py        # TokenType definitions
-│   └── keywords.py      # All reserved keywords
+├── src/
+│   └── lexer/
+│       ├── __init__.py
+│       ├── keywords.py       # keyword table and classification
+│       └── lexer.py          # main tokenizer
 ├── tests/
 │   └── lexer/
-│       └── uefi_example.lpy
-└── README.md
+│       ├── basic.lpy         # basic syntax test cases
+│       ├── errors.lpy        # error recovery tests
+│       ├── numbers.lpy       # numeric literal tests
+│       ├── strings.lpy       # string literal tests
+│       ├── uefi_example.lpy  # real UEFI-target example
+│       └── *.snap / *.txt    # snapshot outputs for diffing
+├── cpp/                      # reserved for future C++ interop / FFI layer
+├── main.py                   # CLI entrypoint
+├── pyproject.toml
+└── uv.lock
 ```
 
 ---
 
-## Why QBE and not LLVM?
+## Current Status
 
-LLVM is a dependency you have to fight. QBE is ~10k lines of C, readable, hackable, and produces good code for x86-64 and ARM64. For a language targeting UEFI and OS development, QBE's simplicity is a feature. MS x64 ABI (`winabi`) is supported for UEFI targets.
+| Component            | Status                            |
+|----------------------|-----------------------------------|
+| Lexer                | ✅ ~90% complete                   |
+| Token Preprocessor   | 🔄 In progress                    |
+| Parser               | ⏳ Not started (next milestone)    |
+| AST Node definitions | ⏳ Not started                     |
+| QBE IR Emitter       | ⏳ Not started                     |
+| QBE Python Bindings  | ⏳ Planned (Phase 1)               |
 
 ---
 
-## Status
+## Design Philosophy
 
-Early development. Lexer ~90% complete. Parser and AST in progress.
+LowPy is built around the idea that a systems programming language does not need to depend on a runtime by default to be modern, expressive, or powerful.
 
-Not ready for use. Design is being locked down as implementation progresses.
+### The Compiler Assists — It Does Not Dominate
+
+The compiler leverages static analysis, type inference, escape analysis, IR-level optimization, and compile-time metaprogramming. None of these produce side effects the programmer cannot see.
+
+- Explicit programmer control is preserved at all times
+- No hidden allocations or invisible behavior
+- ABI transparency is a first-class concern
+- Predictable execution is non-negotiable
+- 100% C-compatible readability — every construct maps cleanly to a C mental model
+
+### Runtime-Free by Default — Four Layers
+
+LowPy separates concerns into explicit opt-in layers. Nothing above Layer 0 is ever implicitly included.
+
+| Layer   | Description                                              |
+|---------|----------------------------------------------------------|
+| Layer 0 | Bare metal — no runtime, no heap, no hidden init         |
+| Layer 1 | Optional allocators (arena, explicit memory strategies)  |
+| Layer 2 | Optional async / concurrency systems                     |
+| Layer 3 | Optional managed / higher-level abstractions             |
+
+This constraint forces important architectural questions at design time: *What truly requires runtime support? What can be resolved at compile time? Which abstractions are genuinely zero-cost?*
+
+---
+
+## Language Snapshot
+
+```python
+# Functions
+def add(a: i32, b: i32) -> i32:
+    return a + b
+
+# Pointer types  —  @ is the pointer sigil, never chained
+def set_value(ptr: @i32, val: i32):
+    *ptr = val       # * = dereference
+    addr = &val      # & = address-of (works for data and functions)
+
+# type = pure data struct
+type Point:
+    x: f32
+    y: f32
+
+# class = struct + implicit self  (compiler rewrites to free functions, no vtables)
+class Vec2:
+    x: f32
+    y: f32
+
+    def length(self) -> f32:
+        return sqrt(self.x * self.x + self.y * self.y)
+
+# Static array — C-style initializer
+buf: i32[10] = {}
+
+# Const string goes to .rodata
+msg: const str = "hello, world"
+
+# Struct memory layout directive
+__layout__(packed)
+type PackedHeader:
+    magic:   u16
+    version: u8
+    flags:   u8
+```
+
+### Key Syntax Decisions
+
+| Feature          | LowPy                                          |
+|------------------|------------------------------------------------|
+| Pointer sigil    | `@T` (never chained)                           |
+| Dereference      | `*ptr`                                         |
+| Address-of       | `&val` — uniform for data and functions        |
+| Functions        | `def`                                          |
+| Comments         | `#`                                            |
+| Booleans         | `true` / `false`                               |
+| Pure struct      | `type`                                         |
+| Struct + methods | `class` (no vtables, no RTTI)                  |
+| Memory layout    | `__layout__(packed \| aligned(N) \| endian)`   |
+| Generics         | Token-level substitution (comptime in Phase 2) |
+| Typing           | Structural (not nominal)                       |
+| Dynamic dispatch | Not supported                                  |
+
+---
+
+## Roadmap
+
+### Phase 1 — Pure Python (Current)
+The entire compiler toolchain is written in Python. The goal is a working end-to-end `.lpy → binary` pipeline.
+
+- Lexer, parser, semantic analysis, and IR emission all in Python
+- QBE integration via Python bindings (C API wrapper or text IR + subprocess)
+- libc-dependent: all system calls go through libc
+- Static allocation and stack only — no heap GC
+
+### Phase 2 — Arena GC + Opt-in Runtime
+- Arena-based garbage collector
+- Opt-in runtime library
+- Comptime evaluation (Zig-inspired)
+- Inline assembly (`asm:` block)
+- Tagged union support (`union SmallValue`)
+- Ownership / borrowing rules (design pending)
+
+### Phase 3 — Own libc + Direct Syscalls
+- Remove libc dependency entirely
+- Direct syscall interface
+- Full UEFI / OS-level / bare-metal support
+
+---
+
+## Target Domains
+
+- UEFI firmware and bootloaders
+- Operating system kernels
+- Embedded systems
+- Compilers and low-level tooling
+- Anything where a runtime is a liability, not a feature
+
+---
+
+## Getting Started
+
+> The project is in early development. The lexer is functional and test snapshots are available.
+
+**Requirements:** Python 3.14+, [uv](https://github.com/astral-sh/uv)
+
+```bash
+git clone https://github.com/your-username/lowpy-python
+cd lowpy-python
+uv sync
+python main.py
+```
+
+Lexer snapshot tests live in `tests/lexer/`. Each `.lpy` file has a corresponding `.snap` (token snapshot) and `.lpy.txt` (expected output) for diffing.
+
+---
+
+## A Note on This Project
+
+This is a **hobby project** — built for the joy of building it. There is no shipping deadline, no roadmap pressure, and no definition of success beyond having fun in the process.
+
+I use AI assistance throughout — for brainstorming language design decisions, thinking through tradeoffs, and occasionally for lite coding tasks. The ideas, direction, and final calls are mine; AI is a thinking partner, not a ghostwriter.
+
+If that bothers you, this project probably isn't for you. If it doesn't — welcome aboard.
+
+---
+
+## Documentation
+
+Full language design documentation — type system, vargs, lexer internals, design philosophy, and roadmap — is maintained in the LowPy Notion Wiki:
+
+📖 [LowPy Wiki](https://www.notion.so/LowPy-Wiki-363c7b111117810381a6ebab41938b9d)
+
+---
+
+## License
+
+Licensed under the [Apache License 2.0](./LICENSE).
