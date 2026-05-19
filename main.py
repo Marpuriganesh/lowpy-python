@@ -31,6 +31,7 @@ def process_file(
     generate_text=False,
     test_type: TestType = TestType.lexer,
 ):
+    file_errored = False
     with open(path, "r") as f:
         code = f.read()
     lexer = Lexer(code)
@@ -73,9 +74,12 @@ def process_file(
                     for node in result:
                         ast_text_file.write(f"{node}\n")
         except Exception as e:
+            file_errored = True
             print("="*30 + " Parsing error " + "="*30+"\n")
             print(f"Error occurred while parsing {path}{e}\n")
             print("="*75)
+        if not file_errored:
+            print("###"*10+f" Finished processing {path} "+"###"*10+"\n")
     return path, tokens, ast_as_list
 
 
