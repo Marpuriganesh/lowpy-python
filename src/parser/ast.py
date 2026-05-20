@@ -29,7 +29,7 @@ class Identifier(Expression):
 @dataclass
 class TypeNode(BaseNode):
     name: str
-    is_pointer: bool
+    is_pointer: bool = False
     generic_args: Optional[List[TypeNode]] = None
     kind: str = field(default="TypeNode", init=False)
 
