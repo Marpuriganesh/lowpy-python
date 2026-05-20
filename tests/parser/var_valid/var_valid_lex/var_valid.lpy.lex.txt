@@ -1,0 +1,20 @@
+
+[IDENTIFIER(x) at 2:1][COLON(:) at 2:2][I32(i32) at 2:4][EQUALS(=) at 2:8][NUMBER(5) at 2:10]
+[IDENTIFIER(y) at 3:1][COLON(:) at 3:2][F32(f32) at 3:4][EQUALS(=) at 3:8][NUMBER(3.14) at 3:10]
+[IDENTIFIER(z) at 4:1][COLON(:) at 4:2][I64(i64) at 4:4][EQUALS(=) at 4:8][NUMBER(100) at 4:10]
+[IDENTIFIER(flag) at 5:1][COLON(:) at 5:5][BOOL(bool) at 5:7][EQUALS(=) at 5:12][IDENTIFIER(other) at 5:14]
+[IDENTIFIER(name) at 6:1][COLON(:) at 6:5][IDENTIFIER(str) at 6:7][EQUALS(=) at 6:11][IDENTIFIER(some_var) at 6:13]
+
+[IDENTIFIER(limit) at 8:1][COLON(:) at 8:6][CONST(const) at 8:8][I32(i32) at 8:14][EQUALS(=) at 8:18][NUMBER(100) at 8:20]
+[IDENTIFIER(msg) at 9:1][COLON(:) at 9:4][CONST(const) at 9:6][IDENTIFIER(str) at 9:12][EQUALS(=) at 9:16][IDENTIFIER(label) at 9:18]
+
+[IDENTIFIER(items) at 11:1][COLON(:) at 11:6][IDENTIFIER(list) at 11:8][LT(<) at 11:12][I32(i32) at 11:13][GT(>) at 11:16][EQUALS(=) at 11:18][IDENTIFIER(mylist) at 11:20]
+[IDENTIFIER(pairs) at 12:1][COLON(:) at 12:6][IDENTIFIER(list) at 12:8][LT(<) at 12:12][IDENTIFIER(str) at 12:13][GT(>) at 12:16][EQUALS(=) at 12:18][IDENTIFIER(strlist) at 12:20]
+
+[IDENTIFIER(nested) at 14:1][COLON(:) at 14:7][IDENTIFIER(list) at 14:9][LT(<) at 14:13][IDENTIFIER(list) at 14:14][LT(<) at 14:18][I32(i32) at 14:19][GT(>) at 14:22][GT(>) at 14:23][EQUALS(=) at 14:25][IDENTIFIER(matrix) at 14:27]
+
+[IDENTIFIER(p) at 16:1][COLON(:) at 16:2][AT(@) at 16:4][I32(i32) at 16:5][EQUALS(=) at 16:9][IDENTIFIER(addr) at 16:11]
+[IDENTIFIER(q) at 17:1][COLON(:) at 17:2][AT(@) at 17:4][IDENTIFIER(str) at 17:5][EQUALS(=) at 17:9][IDENTIFIER(sptr) at 17:11]
+[IDENTIFIER(r) at 18:1][COLON(:) at 18:2][CONST(const) at 18:4][AT(@) at 18:10][I32(i32) at 18:11][EQUALS(=) at 18:15][IDENTIFIER(cptr) at 18:17]
+[IDENTIFIER(s) at 19:1][COLON(:) at 19:2][AT(@) at 19:4][IDENTIFIER(list) at 19:5][LT(<) at 19:9][I32(i32) at 19:10][GT(>) at 19:13][EQUALS(=) at 19:15][IDENTIFIER(lptr) at 19:17]
+[EOF(EOF) at 20:1]

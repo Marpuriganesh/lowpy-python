@@ -32,6 +32,7 @@ def process_file(
     test_type: TestType = TestType.lexer,
 ):
     file_errored = False
+    base_folder_name = os.path.splitext(os.path.basename(path))[0]  # → "var_err_empty_generic"
     with open(path, "r") as f:
         code = f.read()
     lexer = Lexer(code)
@@ -39,11 +40,21 @@ def process_file(
     ast_as_list = []
     if generate:
         token_dict = [tok.to_dict() for tok in tokens]
-        output_file_path = path + ".lex.snap"
+        base_folder_path = os.path.join(os.path.dirname(path), base_folder_name)
+        os.makedirs(base_folder_path, exist_ok=True)
+        folder_name = base_folder_name+"_lex"
+        folder_path = os.path.join(base_folder_path, folder_name)
+        os.makedirs(folder_path, exist_ok=True)
+        output_file_path = os.path.join(folder_path, os.path.basename(path) + ".lex.snap")
         with open(output_file_path, "w") as exp_file:
             json.dump(token_dict, exp_file, indent=4)
     if generate_text:
-        output_file_path = path + ".lex.txt"
+        base_folder_path = os.path.join(os.path.dirname(path), base_folder_name)
+        os.makedirs(base_folder_path, exist_ok=True)
+        folder_name = base_folder_name+"_lex"
+        folder_path = os.path.join(base_folder_path, folder_name)
+        os.makedirs(folder_path, exist_ok=True)
+        output_file_path = os.path.join(folder_path, os.path.basename(path) + ".lex.txt")
         indent = 0
         with open(output_file_path, "w") as exp_file:
             for tok in tokens:
@@ -67,17 +78,33 @@ def process_file(
                 [node.to_dict() for node in result] if result is not None else []
             )
             if generate:
-                with open(path + ".ast.snap", "w") as ast_file:
+                base_folder_path = os.path.join(os.path.dirname(path), base_folder_name)
+                os.makedirs(base_folder_path, exist_ok=True)
+                folder_name = base_folder_name+"_ast"
+                folder_path = os.path.join(base_folder_path, folder_name)
+                os.makedirs(folder_path, exist_ok=True)
+                with open(os.path.join(folder_path, os.path.basename(path) + ".ast.snap"), "w") as ast_file:
                     json.dump(ast_as_list, ast_file, indent=4)
             if generate_text:
-                with open(path + ".ast.txt", "w") as ast_text_file:
+                base_folder_path = os.path.join(os.path.dirname(path), base_folder_name)
+                os.makedirs(base_folder_path, exist_ok=True)
+                folder_name = base_folder_name+"_ast"
+                folder_path = os.path.join(base_folder_path, folder_name)
+                os.makedirs(folder_path, exist_ok=True)
+                with open(os.path.join(folder_path, os.path.basename(path) + ".ast.txt"), "w") as ast_text_file:
                     for node in result:
                         ast_text_file.write(f"{node}\n")
         except Exception as e:
             file_errored = True
-            print("="*30 + " Parsing error " + "="*30+"\n")
-            print(f"Error occurred while parsing {path}{e}\n")
-            print("="*75)
+            exception_string = "=" * 30 + " Parsing error " + "=" * 30 + "\n"+f"Error occurred while parsing {path}{e}\n"+"=" * 75
+            print(exception_string)
+            base_folder_path = os.path.join(os.path.dirname(path), base_folder_name)
+            os.makedirs(base_folder_path, exist_ok=True)
+            folder_name = base_folder_name+"_ast"
+            folder_path = os.path.join(base_folder_path, folder_name)
+            os.makedirs(folder_path, exist_ok=True)
+            with open(os.path.join(folder_path, os.path.basename(path) + ".ast.error"), "w") as error_file:
+                error_file.write(exception_string)
         if not file_errored:
             print("###"*10+f" Finished processing {path} "+"###"*10+"\n")
     return path, tokens, ast_as_list

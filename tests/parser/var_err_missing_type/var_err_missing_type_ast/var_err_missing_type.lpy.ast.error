@@ -1,0 +1,6 @@
+============================== Parsing error ==============================
+Error occurred while parsing /Users/ganeshmarpuri/development/compiler/lowpy-python/tests/parser/var_err_missing_type.lpy(Syntax error):
+x : = 5 NEWLINE
+   ^
+Unexpected type at line 2, column 4
+===========================================================================

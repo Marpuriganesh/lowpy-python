@@ -23,17 +23,17 @@ Statement = Union[VarDecl,Identifier]  # Extend this with more statement types a
 
 class Parser:
     def __init__(self, tokens: list[Token]):
-        self.tokens = tokens
+        self.tokens: list[Token] = tokens
         self.position = 0
 
 
     # MARK:---Peek and Advance---
-    def peek(self, offset=0):
+    def peek(self, offset=0)-> Union[Token, None]:
         if self.position + offset < len(self.tokens):
             return self.tokens[self.position + offset]
         return None
 
-    def advance(self):
+    def advance(self)-> Union[Token, None]:
         value = self.peek()
         if value is not None:
             self.position += 1
@@ -41,17 +41,17 @@ class Parser:
 
     # MARK:---Helper functions---
 
-    def get_source_line(self, line):
+    def get_source_line(self, line)-> str:
         get_source_line_tokens = [token for token in self.tokens if token.line == line and token.type != TokenType.EOF]
         if get_source_line_tokens:
             return " ".join(str(token.value )for token in get_source_line_tokens)
         return ""
 
-    def build_error_pointer_string(self, line, column):
+    def build_error_pointer_string(self, line, column)-> str:
         source_line = self.get_source_line(line)
         return f"{source_line}\n{' ' * (column - 1)}^"
     
-    def build_error_string(self, message, line, column):
+    def build_error_string(self, message, line, column)-> str:
         pointer_string = self.build_error_pointer_string(line, column)
         return f"{pointer_string}\n{message} at line {line}, column {column}"
 
@@ -60,6 +60,13 @@ class Parser:
     def parse_type(self) -> TypeNode:
         token = self.peek()
         token_type = None
+        is_pointer = False
+        
+        if token.type == TokenType.AT:
+            self.advance()  # consume '@'
+            is_pointer = True
+            token = self.peek()  # update token to the next one after '@'
+        
         if token.type in PRIMITIVE_TYPES or token.type == TokenType.IDENTIFIER:
             if token.type in PRIMITIVE_TYPES:
                 token_type = "primitive"
@@ -84,7 +91,7 @@ class Parser:
                                 self.peek().column
                             )
                         )
-                return TypeNode(name=token.value, generic_args=generic_args)
+                return TypeNode(name=token.value, is_pointer=is_pointer, generic_args=generic_args)
             elif token_type == "primitive" and self.peek().type == TokenType.LT:
                 raise SyntaxError(
                     self.build_error_string(
@@ -93,7 +100,7 @@ class Parser:
                         self.peek().column
                     )
                 )
-            return TypeNode(name=token.value)
+            return TypeNode(name=token.value, is_pointer=is_pointer)
         raise SyntaxError(self.build_error_string("Unexpected type", self.peek().line, self.peek().column))
 
     def parse_expression(self) -> IntLiteral | FloatLiteral | Identifier:

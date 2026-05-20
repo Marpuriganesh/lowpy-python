@@ -1,0 +1,6 @@
+============================== Parsing error ==============================
+Error occurred while parsing /Users/ganeshmarpuri/development/compiler/lowpy-python/tests/parser/var_err_empty_generic.lpy(Syntax error):
+x : list < > = y NEWLINE
+        ^
+Unexpected type at line 2, column 9
+===========================================================================

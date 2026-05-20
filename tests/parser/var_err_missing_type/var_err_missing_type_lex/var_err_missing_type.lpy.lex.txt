@@ -1,0 +1,3 @@
+
+[IDENTIFIER(x) at 2:1][COLON(:) at 2:2][EQUALS(=) at 2:4][NUMBER(5) at 2:6]
+[EOF(EOF) at 3:1]

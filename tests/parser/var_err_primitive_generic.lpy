@@ -1,0 +1,2 @@
+# error: primitive types cannot have generic args
+x: i32<str> = 5

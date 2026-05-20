@@ -4,16 +4,16 @@ y: f32 = 3.14
 z: i64 = 100
 flag: bool = other
 name: str = some_var
-
 # const declarations
 limit: const i32 = 100
 msg: const str = label
-
 # generic types
 items: list<i32> = mylist
 pairs: list<str> = strlist
-
 # nested generics
 nested: list<list<i32>> = matrix
-
-
+# pointer types
+p: @i32 = addr
+q: @str = sptr
+r: const @i32 = cptr
+s: @list<i32> = lptr

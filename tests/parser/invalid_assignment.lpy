@@ -1,5 +1,0 @@
-x: i32<str> = 5        # primitive with generic args
-x: i32 5               # missing =
-x i32 = 5              # missing :
-x: = 5                 # missing type
-x: list<> = y          # empty generic args

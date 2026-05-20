@@ -1,0 +1,6 @@
+============================== Parsing error ==============================
+Error occurred while parsing /Users/ganeshmarpuri/development/compiler/lowpy-python/tests/parser/var_err_missing_colon.lpy(Syntax error):
+x i32 = 5 NEWLINE
+  ^
+Expected ':' at line 2, column 3
+===========================================================================

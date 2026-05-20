@@ -3,6 +3,7 @@
         "name": "x",
         "type": {
             "name": "i32",
+            "is_pointer": false,
             "generic_args": null,
             "kind": "TypeNode"
         },
@@ -17,6 +18,7 @@
         "name": "y",
         "type": {
             "name": "f32",
+            "is_pointer": false,
             "generic_args": null,
             "kind": "TypeNode"
         },
@@ -31,6 +33,7 @@
         "name": "z",
         "type": {
             "name": "i64",
+            "is_pointer": false,
             "generic_args": null,
             "kind": "TypeNode"
         },
@@ -45,6 +48,7 @@
         "name": "flag",
         "type": {
             "name": "bool",
+            "is_pointer": false,
             "generic_args": null,
             "kind": "TypeNode"
         },
@@ -59,6 +63,7 @@
         "name": "name",
         "type": {
             "name": "str",
+            "is_pointer": false,
             "generic_args": null,
             "kind": "TypeNode"
         },
@@ -73,6 +78,7 @@
         "name": "limit",
         "type": {
             "name": "i32",
+            "is_pointer": false,
             "generic_args": null,
             "kind": "TypeNode"
         },
@@ -87,6 +93,7 @@
         "name": "msg",
         "type": {
             "name": "str",
+            "is_pointer": false,
             "generic_args": null,
             "kind": "TypeNode"
         },
@@ -101,9 +108,11 @@
         "name": "items",
         "type": {
             "name": "list",
+            "is_pointer": false,
             "generic_args": [
                 {
                     "name": "i32",
+                    "is_pointer": false,
                     "generic_args": null,
                     "kind": "TypeNode"
                 }
@@ -121,9 +130,11 @@
         "name": "pairs",
         "type": {
             "name": "list",
+            "is_pointer": false,
             "generic_args": [
                 {
                     "name": "str",
+                    "is_pointer": false,
                     "generic_args": null,
                     "kind": "TypeNode"
                 }
@@ -141,12 +152,15 @@
         "name": "nested",
         "type": {
             "name": "list",
+            "is_pointer": false,
             "generic_args": [
                 {
                     "name": "list",
+                    "is_pointer": false,
                     "generic_args": [
                         {
                             "name": "i32",
+                            "is_pointer": false,
                             "generic_args": null,
                             "kind": "TypeNode"
                         }
@@ -158,6 +172,73 @@
         },
         "value": {
             "name": "matrix",
+            "kind": "Identifier"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "p",
+        "type": {
+            "name": "i32",
+            "is_pointer": true,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "name": "addr",
+            "kind": "Identifier"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "q",
+        "type": {
+            "name": "str",
+            "is_pointer": true,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "name": "sptr",
+            "kind": "Identifier"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "r",
+        "type": {
+            "name": "i32",
+            "is_pointer": true,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "name": "cptr",
+            "kind": "Identifier"
+        },
+        "is_const": true,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "s",
+        "type": {
+            "name": "list",
+            "is_pointer": true,
+            "generic_args": [
+                {
+                    "name": "i32",
+                    "is_pointer": false,
+                    "generic_args": null,
+                    "kind": "TypeNode"
+                }
+            ],
+            "kind": "TypeNode"
+        },
+        "value": {
+            "name": "lptr",
             "kind": "Identifier"
         },
         "is_const": false,

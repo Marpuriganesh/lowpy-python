@@ -1,0 +1,3 @@
+
+[IDENTIFIER(x) at 2:1][I32(i32) at 2:3][EQUALS(=) at 2:7][NUMBER(5) at 2:9]
+[EOF(EOF) at 3:1]
