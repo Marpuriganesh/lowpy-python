@@ -1,0 +1,2 @@
+
+[IDENTIFIER(p) at 2:1][COLON(:) at 2:2][AT(@) at 2:4][AT(@) at 2:5][I32(i32) at 2:6][EQUALS(=) at 2:10][IDENTIFIER(x) at 2:12][EOF(EOF) at 2:13]

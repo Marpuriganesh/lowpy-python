@@ -66,6 +66,14 @@ class Parser:
             self.advance()  # consume '@'
             is_pointer = True
             token = self.peek()  # update token to the next one after '@'
+            if token.type == TokenType.AT:
+                raise SyntaxError(
+                    self.build_error_string(
+                        "Pointer types cannot be chained — '@' cannot follow '@'",
+                        token.line,
+                        token.column,
+                    )
+                )
         
         if token.type in PRIMITIVE_TYPES or token.type == TokenType.IDENTIFIER:
             if token.type in PRIMITIVE_TYPES:

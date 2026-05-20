@@ -1,0 +1,2 @@
+# error: chained pointer not allowed
+p: @@i32 = x
