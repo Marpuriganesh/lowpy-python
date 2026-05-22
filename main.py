@@ -16,6 +16,7 @@ from rich.progress import (
     TaskProgressColumn,
 )
 from rich.panel import Panel
+
 # from rich import print as rprint
 from rich.text import Text
 # from rich.rule import Rule
@@ -41,23 +42,107 @@ def gather_test_files(test_dir):
     return []
 
 
+def assert_snap(actual, snap_path):
+    if not os.path.exists(snap_path):
+        return False, f"Snapshot file not found: {snap_path}"
+    with open(snap_path, "r") as snap_file:
+        expected = json.load(snap_file)
+    passed = True
+    error_messages = []
+    max_len = max(len(expected), len(actual))
+
+    for i in range(max_len):
+        if i >= len(expected):
+            # print(f"Extra token at {i}")
+            # print("Got:", actual[i])
+            passed = False
+            error_message = f"Extra token at {i}:\n Got {actual[i]}"
+            error_messages.append(error_message)
+            break
+
+        if i >= len(actual):
+            print(f"Missing token at {i}")
+            print("Expected:", expected[i])
+            passed = False
+            error_message = f"Missing token at {i}:\n Expected {expected[i]}"
+            error_messages.append(error_message)
+            break
+
+        exp = expected[i]
+        got = actual[i]
+
+        if exp != got:
+            # print(f"Mismatch at token {i}")
+            # print("Expected:", exp)
+            # print("Got     :", got)
+            passed = False
+            error_message = f"Mismatch at token {i}:\n Expected: {exp}\n Got: {got}"
+            error_messages.append(error_message)
+
+    return passed, error_messages
+
+
 def assert_file(
-    path,test_type: TestType = TestType.lexer
+    file_path,
+    test_type: TestType = TestType.lexer,
 ):
-    # placeholder for assert mode — will compare generated output to expected .snap files
-    pass
+    Passed = {
+        "lexer": None,
+        "parser": None,
+    }
+    ErrorMessages = {
+        "lexer": None,
+        "parser": None,
+    }
+    base_folder_name = os.path.splitext(os.path.basename(file_path))[0]
+    with open(file_path, "r") as f:
+        code = f.read()
+    lexer = Lexer(code)
+    tokens = list(lexer)
+    ast_as_list = []
+    console.print(f"asserting {os.path.basename(file_path)}...")
+    token_dict = [tok.to_dict() for tok in tokens]
+    snap_path = os.path.join(
+        os.path.dirname(file_path),
+        base_folder_name,
+        base_folder_name + "_lex",
+        os.path.basename(file_path) + ".lex.snap",
+    )
+    lex_passed, lex_error_messages = assert_snap(token_dict, snap_path)
+    Passed["lexer"] = lex_passed
+    ErrorMessages["lexer"] = lex_error_messages
+    if test_type == TestType.parser:
+        parser = Parser(tokens)
+        try:
+            result = parser.parse()
+            ast_as_list = (
+                [node.to_dict() for node in result] if result is not None else []
+            )
+            snap_path = os.path.join(
+                os.path.dirname(file_path),
+                base_folder_name,
+                base_folder_name + "_ast",
+                os.path.basename(file_path) + ".ast.snap",
+            )
+            ast_passed, ast_error_messages = assert_snap(ast_as_list, snap_path)
+            Passed["parser"] = ast_passed
+            ErrorMessages["parser"] = ast_error_messages
+        except Exception as e:
+            ast_passed = False
+            ast_error_messages = [str(e)]
+    return file_path, Passed, ErrorMessages
 
 
 def process_file(
-    path,
+    file_path,
     generate=False,
     generate_text=False,
     test_type: TestType = TestType.lexer,
 ):
     file_errored = False
     error_message = None
-    base_folder_name = os.path.splitext(os.path.basename(path))[0]
-    with open(path, "r") as f:
+    base_folder_name = os.path.splitext(os.path.basename(file_path))[0]
+    with open(file_path, "r") as f:
         code = f.read()
     lexer = Lexer(code)
     tokens = list(lexer)
@@ -65,25 +150,25 @@ def process_file(
 
     if generate:
         token_dict = [tok.to_dict() for tok in tokens]
-        base_folder_path = os.path.join(os.path.dirname(path), base_folder_name)
+        base_folder_path = os.path.join(os.path.dirname(file_path), base_folder_name)
         os.makedirs(base_folder_path, exist_ok=True)
         folder_name = base_folder_name + "_lex"
         folder_path = os.path.join(base_folder_path, folder_name)
         os.makedirs(folder_path, exist_ok=True)
         output_file_path = os.path.join(
-            folder_path, os.path.basename(path) + ".lex.snap"
+            folder_path, os.path.basename(file_path) + ".lex.snap"
         )
         with open(output_file_path, "w") as exp_file:
             json.dump(token_dict, exp_file, indent=4)
 
     if generate_text:
-        base_folder_path = os.path.join(os.path.dirname(path), base_folder_name)
+        base_folder_path = os.path.join(os.path.dirname(file_path), base_folder_name)
         os.makedirs(base_folder_path, exist_ok=True)
         folder_name = base_folder_name + "_lex"
         folder_path = os.path.join(base_folder_path, folder_name)
         os.makedirs(folder_path, exist_ok=True)
         output_file_path = os.path.join(
-            folder_path, os.path.basename(path) + ".lex.txt"
+            folder_path, os.path.basename(file_path) + ".lex.txt"
         )
         indent = 0
         with open(output_file_path, "w") as exp_file:
@@ -109,23 +194,31 @@ def process_file(
                 [node.to_dict() for node in result] if result is not None else []
             )
             if generate:
-                base_folder_path = os.path.join(os.path.dirname(path), base_folder_name)
+                base_folder_path = os.path.join(
+                    os.path.dirname(file_path), base_folder_name
+                )
                 os.makedirs(base_folder_path, exist_ok=True)
                 folder_name = base_folder_name + "_ast"
                 folder_path = os.path.join(base_folder_path, folder_name)
                 os.makedirs(folder_path, exist_ok=True)
                 with open(
-                    os.path.join(folder_path, os.path.basename(path) + ".ast.snap"), "w"
+                    os.path.join(
+                        folder_path, os.path.basename(file_path) + ".ast.snap"
+                    ),
+                    "w",
                 ) as ast_file:
                     json.dump(ast_as_list, ast_file, indent=4)
             if generate_text:
-                base_folder_path = os.path.join(os.path.dirname(path), base_folder_name)
+                base_folder_path = os.path.join(
+                    os.path.dirname(file_path), base_folder_name
+                )
                 os.makedirs(base_folder_path, exist_ok=True)
                 folder_name = base_folder_name + "_ast"
                 folder_path = os.path.join(base_folder_path, folder_name)
                 os.makedirs(folder_path, exist_ok=True)
                 with open(
-                    os.path.join(folder_path, os.path.basename(path) + ".ast.txt"), "w"
+                    os.path.join(folder_path, os.path.basename(file_path) + ".ast.txt"),
+                    "w",
                 ) as ast_text_file:
                     for node in result:
                         ast_text_file.write(f"{node}\n")
@@ -137,20 +230,23 @@ def process_file(
                 + " Parsing error "
                 + "=" * 30
                 + "\n"
-                + f"Error occurred while parsing {path}{e}\n"
+                + f"Error occurred while parsing {file_path}{e}\n"
                 + "=" * 75
             )
-            base_folder_path = os.path.join(os.path.dirname(path), base_folder_name)
+            base_folder_path = os.path.join(
+                os.path.dirname(file_path), base_folder_name
+            )
             os.makedirs(base_folder_path, exist_ok=True)
             folder_name = base_folder_name + "_ast"
             folder_path = os.path.join(base_folder_path, folder_name)
             os.makedirs(folder_path, exist_ok=True)
             with open(
-                os.path.join(folder_path, os.path.basename(path) + ".ast.error"), "w"
+                os.path.join(folder_path, os.path.basename(file_path) + ".ast.error"),
+                "w",
             ) as error_file:
                 error_file.write(exception_string)
 
-    return path, tokens, ast_as_list, file_errored, error_message
+    return file_path, tokens, ast_as_list, file_errored, error_message
 
 
 def print_generate_summary(results, test_type, generate, generate_text):
@@ -174,8 +270,8 @@ def print_generate_summary(results, test_type, generate, generate_text):
     passed = 0
     failed = 0
 
-    for path, tokens, ast_list, errored, error_msg in results:
-        fname = os.path.basename(path)
+    for file_path, tokens, ast_list, errored, error_msg in results:
+        fname = os.path.basename(file_path)
         token_count = str(len(tokens))
         ast_count = str(len(ast_list)) if test_type == TestType.parser else "—"
 
@@ -227,11 +323,36 @@ def print_generate_summary(results, test_type, generate, generate_text):
 
 
 def print_assert_summary(results, test_type):
-    """Placeholder — will be filled when assert mode is built."""
+    # """Placeholder — will be filled when assert mode is built."""
+    # console.print()
+    # console.rule("[bold blue]Assert Results[/bold blue]")
+    # console.print("  [dim]Assert mode not yet implemented.[/dim]")
+    # console.print()
     console.print()
     console.rule("[bold blue]Assert Results[/bold blue]")
-    console.print("  [dim]Assert mode not yet implemented.[/dim]")
     console.print()
+    # console.print(results)
+    console.print(
+        f"  [dim]Total files:[/dim] {len(results)}  •  "
+        + f"[green]Passed:[/green] {sum(1 for _, res, _ in results if res['lexer'] and (res['parser'] if test_type == TestType.parser else True))}  •  "
+        + f"[red]Failed:[/red] {sum(1 for _, res, _ in results if not res['lexer'] or (test_type == TestType.parser and not res['parser']))}"
+    )
+    console.print()
+    for file_path, res, err in results:
+        fname = os.path.basename(file_path)
+        lex_status = "Passed" if res["lexer"] else "Failed"
+        parser_status = "Passed" if res["parser"] else "Failed" if test_type == TestType.parser else ""
+        status_color = "green" if res["lexer"] and (res["parser"] if test_type == TestType.parser else True) else "red"
+        status_text = Text(f"{lex_status} {parser_status}", style=status_color)
+        console.print(f"{fname}: {status_text}")
+        if err["lexer"]:
+            console.print("[red]Lexer errors:[/red]")
+            for e in err["lexer"]:
+                console.print(f"[red]{e}[/red]")
+        if test_type == TestType.parser and err["parser"]:
+            console.print("[red]Parser errors:[/red]")
+            for e in err["parser"]:
+                console.print(f"[red]{e}[/red]")
 
 
 def main():
@@ -318,28 +439,49 @@ def main():
         console.print(f"  [dim cyan]{os.path.basename(f)}[/dim cyan]")
     console.print()
 
-    results = []
-    with Progress(
-        SpinnerColumn(),
-        TextColumn("[progress.description]{task.description}"),
-        BarColumn(),
-        TaskProgressColumn(),
-        console=console,
-        transient=True,
-    ) as progress:
-        task = progress.add_task("[cyan]Processing...", total=len(test_files))
+    if mode == "generate":
+        results = []
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(),
+            TaskProgressColumn(),
+            console=console,
+            transient=True,
+        ) as progress:
+            task = progress.add_task("[cyan]Processing...", total=len(test_files))
 
-        with ThreadPoolExecutor(max_workers=args.jobs) as executor:
-            futures = {
-                executor.submit(
-                    process_file, f, args.generate, args.generate_text, test_type
-                ): f
-                for f in test_files
-            }
-            for future in futures:
-                result = future.result()
-                results.append(result)
-                progress.advance(task)
+            with ThreadPoolExecutor(max_workers=args.jobs) as executor:
+                futures = {
+                    executor.submit(
+                        process_file, f, args.generate, args.generate_text, test_type
+                    ): f
+                    for f in test_files
+                }
+                for future in futures:
+                    result = future.result()
+                    results.append(result)
+                    progress.advance(task)
+    else:
+        results = []
+        with Progress(
+            SpinnerColumn(),
+            TextColumn("[progress.description]{task.description}"),
+            BarColumn(),
+            TaskProgressColumn(),
+            console=console,
+            transient=True,
+        ) as progress:
+            task = progress.add_task("[cyan]Asserting...", total=len(test_files))
+
+            with ThreadPoolExecutor(max_workers=args.jobs) as executor:
+                futures = {
+                    executor.submit(assert_file, f, test_type): f for f in test_files
+                }
+                for future in futures:
+                    result = future.result()
+                    results.append(result)
+                    progress.advance(task)
 
     if mode == "generate":
         print_generate_summary(results, test_type, args.generate, args.generate_text)
@@ -349,8 +491,8 @@ def main():
     if args.verbose:
         console.print()
         console.rule("[dim]Verbose Token Output[/dim]")
-        for path, tokens, ast_list, _, _ in results:
-            console.print(f"\n[bold]{os.path.basename(path)}[/bold]")
+        for file_path, tokens, ast_list, _, _ in results:
+            console.print(f"\n[bold]{os.path.basename(file_path)}[/bold]")
             indent = 0
             for tok in tokens:
                 match tok.type:
