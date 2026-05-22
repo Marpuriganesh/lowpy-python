@@ -129,8 +129,30 @@ def assert_file(
             Passed["parser"] = ast_passed
             ErrorMessages["parser"] = ast_error_messages
         except Exception as e:
-            ast_passed = False
-            ast_error_messages = [str(e)]
+            expected_error_path = os.path.join(
+                os.path.dirname(file_path),
+                base_folder_name,
+                base_folder_name + "_ast",
+                os.path.basename(file_path) + ".ast.error",
+            )
+            if os.path.exists(expected_error_path):
+                with open(expected_error_path, "r") as ef:
+                    lines = ef.read().splitlines()
+                # strip the === header, "Error occurred while parsing..." line, and === footer
+                lines = [line for line in lines if not line.startswith("=") and not line.startswith("Error occurred while parsing")]
+                expected_error = "\n".join(lines).strip()
+                actual_error = str(e).strip()
+                if expected_error in actual_error:
+                    Passed["parser"] = True
+                    ErrorMessages["parser"] = []
+                else:
+                    Passed["parser"] = False
+                    ErrorMessages["parser"] = [
+                        f"Expected error mismatch:\n Expected: {expected_error}\n Got: {actual_error}"
+                    ]
+            else:
+                Passed["parser"] = False
+                ErrorMessages["parser"] = [str(e)]
     return file_path, Passed, ErrorMessages
 
 
