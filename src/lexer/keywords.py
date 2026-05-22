@@ -15,6 +15,7 @@ class TokenType(Enum):
     # -------- KEYWORDS --------
     CONST = auto()
     TYPE = auto()
+    UNION = auto()
     CLASS = auto()
     ENUM = auto()
     REDEF = auto()
@@ -136,6 +137,7 @@ KEYWORDS = {
     # keywords
     "const": TokenType.CONST,
     "type": TokenType.TYPE,
+    "union": TokenType.UNION,
     "class": TokenType.CLASS,
     "enum": TokenType.ENUM,
     "redef": TokenType.REDEF,
