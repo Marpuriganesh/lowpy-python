@@ -20,6 +20,7 @@ from rich.panel import Panel
 # from rich import print as rprint
 from rich.text import Text
 # from rich.rule import Rule
+from rich import box
 
 console = Console()
 
@@ -322,37 +323,157 @@ def print_generate_summary(results, test_type, generate, generate_text):
     console.print()
 
 
+def _parse_diff(error_msg: str):
+    """Extract (expected, got) strings from an error message."""
+    try:
+        if "\n Expected: " in error_msg and "\n Got: " in error_msg:
+            after_exp = error_msg.split("\n Expected: ", 1)[1]
+            expected, got = after_exp.split("\n Got: ", 1)
+            return expected.strip(), got.strip()
+    except Exception:
+        pass
+    return None, None
+
+
+def _render_diff_table(error_messages: list):
+    for msg in error_messages:
+        header_line = msg.split("\n")[0].strip()
+        expected, got = _parse_diff(msg)
+
+        console.print(f"    [dim]·[/dim] [white]{header_line}[/white]")
+
+        if expected is not None and got is not None:
+            diff = Table(
+                box=box.SIMPLE,
+                show_header=True,
+                header_style="bold",
+                padding=(0, 2),
+                expand=False,
+            )
+            diff.add_column("Expected", style="green", no_wrap=False, min_width=40)
+            diff.add_column("Got", style="red", no_wrap=False, min_width=40)
+            diff.add_row(expected, got)
+            console.print(diff)
+        else:
+            for line in msg.splitlines():
+                console.print(f"      [dim]{line}[/dim]")
+        console.print()
+
+
 def print_assert_summary(results, test_type):
-    # """Placeholder — will be filled when assert mode is built."""
-    # console.print()
-    # console.rule("[bold blue]Assert Results[/bold blue]")
-    # console.print("  [dim]Assert mode not yet implemented.[/dim]")
-    # console.print()
+    import time
+
+    is_parser = test_type.name == "parser"
+    start = time.perf_counter()
+
     console.print()
-    console.rule("[bold blue]Assert Results[/bold blue]")
-    console.print()
-    # console.print(results)
-    console.print(
-        f"  [dim]Total files:[/dim] {len(results)}  •  "
-        + f"[green]Passed:[/green] {sum(1 for _, res, _ in results if res['lexer'] and (res['parser'] if test_type == TestType.parser else True))}  •  "
-        + f"[red]Failed:[/red] {sum(1 for _, res, _ in results if not res['lexer'] or (test_type == TestType.parser and not res['parser']))}"
+    console.rule(
+        f"[bold] LowPy [yellow]{test_type.name.upper()}[/yellow] — ASSERT [/bold]"
     )
     console.print()
+
+    # ── Compact table ──────────────────────────────────────────────────────────
+    table = Table(
+        box=box.SIMPLE, show_header=False, padding=(0, 1), expand=False, show_edge=False
+    )
+    table.add_column("status", width=3)
+    table.add_column("file", style="white", no_wrap=True)
+    table.add_column("lex", justify="right", no_wrap=True)
+    table.add_column("ast", justify="right", no_wrap=True)
+    table.add_column("tag", no_wrap=True)
+
+    failed_files = []
+    total_pass = 0
+    total_fail = 0
+
     for file_path, res, err in results:
         fname = os.path.basename(file_path)
-        lex_status = "Passed" if res["lexer"] else "Failed"
-        parser_status = "Passed" if res["parser"] else "Failed" if test_type == TestType.parser else ""
-        status_color = "green" if res["lexer"] and (res["parser"] if test_type == TestType.parser else True) else "red"
-        status_text = Text(f"{lex_status} {parser_status}", style=status_color)
-        console.print(f"{fname}: {status_text}")
-        if err["lexer"]:
-            console.print("[red]Lexer errors:[/red]")
-            for e in err["lexer"]:
-                console.print(f"[red]{e}[/red]")
-        if test_type == TestType.parser and err["parser"]:
-            console.print("[red]Parser errors:[/red]")
-            for e in err["parser"]:
-                console.print(f"[red]{e}[/red]")
+        lex_ok = bool(res["lexer"])
+        ast_ok = bool(res["parser"]) if is_parser else True
+        overall_ok = lex_ok and ast_ok
+
+        if overall_ok:
+            total_pass += 1
+            icon = Text("✓", style="bold green")
+            fname_text = Text(fname, style="green")
+            tag = Text("")
+        else:
+            total_fail += 1
+            icon = Text("✗", style="bold red")
+            fname_text = Text(fname, style="red")
+            failed_parts = []
+            if not lex_ok:
+                failed_parts.append("lexer")
+            if is_parser and not ast_ok:
+                failed_parts.append("parser")
+            tag = Text(" › ".join(failed_parts), style="dim red")
+            failed_files.append((file_path, fname, res, err))
+
+        lex_badge = (
+            Text("lex ✓", style="dim green")
+            if lex_ok
+            else Text("lex ✗", style="dim red")
+        )
+        ast_badge = (
+            (
+                Text("ast ✓", style="dim green")
+                if ast_ok
+                else Text("ast ✗", style="dim red")
+            )
+            if is_parser
+            else Text("—", style="dim")
+        )
+
+        table.add_row(icon, fname_text, lex_badge, ast_badge, tag)
+
+    console.print(table)
+
+    # ── Failure details ────────────────────────────────────────────────────────
+    if failed_files:
+        console.print()
+        console.rule("[bold red] FAILURES [/bold red]")
+
+        for _, fname, res, err in failed_files:
+            lex_ok = bool(res["lexer"])
+            ast_ok = bool(res["parser"]) if is_parser else True
+
+            if not lex_ok and err.get("lexer"):
+                console.print()
+                console.print(
+                    f"  [bold red]FAIL[/bold red] [white]{fname}[/white] [dim]›[/dim] [yellow]lexer[/yellow]"
+                )
+                console.print()
+                _render_diff_table(err["lexer"])
+
+            if is_parser and not ast_ok and err.get("parser"):
+                console.print()
+                console.print(
+                    f"  [bold red]FAIL[/bold red] [white]{fname}[/white] [dim]›[/dim] [yellow]parser[/yellow]"
+                )
+                console.print()
+                _render_diff_table(err["parser"])
+
+    # ── Footer ─────────────────────────────────────────────────────────────────
+    elapsed = time.perf_counter() - start
+    total = total_pass + total_fail
+
+    console.print()
+    console.rule("[dim]─[/dim]")
+
+    def _summary_line(label, fail, passed, tot):
+        t = Text(f"  {label}:  ")
+        if fail:
+            t.append(f"{fail} failed", style="bold red")
+            t.append("  |  ", style="dim")
+        t.append(f"{passed} passed", style="bold green")
+        t.append("  |  ", style="dim")
+        t.append(f"{tot} total", style="white")
+        return t
+
+    console.print(_summary_line("Test Suites", total_fail, total_pass, total))
+    console.print(_summary_line("Tests      ", total_fail, total_pass, total))
+    console.print(f"  [dim]Time:[/dim]        [white]{elapsed:.3f}s[/white]")
+    console.print()
 
 
 def main():
