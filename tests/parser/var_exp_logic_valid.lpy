@@ -1,0 +1,3 @@
+x: bool = a and b
+x: bool = a or b
+x: bool = a == b and c == d

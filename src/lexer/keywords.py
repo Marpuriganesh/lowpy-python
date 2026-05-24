@@ -90,9 +90,6 @@ class TokenType(Enum):
     GE = auto()
     LE = auto()
 
-    AND_AND = auto()
-    OR_OR = auto()
-    BANG = auto()
 
     AT = auto()
     ARROW = auto()
@@ -191,8 +188,6 @@ MULTI_OPS = {
     "!=": TokenType.NE,
     ">=": TokenType.GE,
     "<=": TokenType.LE,
-    "&&": TokenType.AND_AND,
-    "||": TokenType.OR_OR,
     "->": TokenType.ARROW,
     "::": TokenType.NAMESPACE,
 }
@@ -206,7 +201,6 @@ SINGLE_OPS = {
     "=": TokenType.EQUALS,
     ">": TokenType.GT,
     "<": TokenType.LT,
-    "!": TokenType.BANG,
     "@": TokenType.AT,
     ":": TokenType.COLON,
     ";": TokenType.SEMICOLON,

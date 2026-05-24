@@ -1,0 +1,2 @@
+VarDecl(name='x', type=TypeNode(name='i32', is_pointer=False, generic_args=None, kind='TypeNode'), value=FieldAccess(obj=Identifier(name='a', kind='Identifier'), field='b', kind='FieldAccess'), is_const=False, kind='VarDecl')
+VarDecl(name='x', type=TypeNode(name='i32', is_pointer=False, generic_args=None, kind='TypeNode'), value=FieldAccess(obj=Identifier(name='a', kind='Identifier'), field='b', kind='FieldAccess'), is_const=False, kind='VarDecl')

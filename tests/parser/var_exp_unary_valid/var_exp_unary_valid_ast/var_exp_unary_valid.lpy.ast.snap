@@ -1,0 +1,128 @@
+[
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "operator": "-",
+            "operand": {
+                "value": 5,
+                "kind": "IntLiteral"
+            },
+            "kind": "UnaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "x",
+        "type": {
+            "name": "bool",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "operator": "not",
+            "operand": {
+                "name": "a",
+                "kind": "Identifier"
+            },
+            "kind": "UnaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "operator": "*",
+            "operand": {
+                "name": "ptr",
+                "kind": "Identifier"
+            },
+            "kind": "UnaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "is_pointer": true,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "operator": "&",
+            "operand": {
+                "name": "y",
+                "kind": "Identifier"
+            },
+            "kind": "UnaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "operator": "-",
+            "operand": {
+                "operator": "-",
+                "operand": {
+                    "value": 5,
+                    "kind": "IntLiteral"
+                },
+                "kind": "UnaryExpr"
+            },
+            "kind": "UnaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "left": {
+                "name": "a",
+                "kind": "Identifier"
+            },
+            "operator": "*",
+            "right": {
+                "operator": "*",
+                "operand": {
+                    "name": "b",
+                    "kind": "Identifier"
+                },
+                "kind": "UnaryExpr"
+            },
+            "kind": "BinaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    }
+]

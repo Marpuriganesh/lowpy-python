@@ -4,8 +4,12 @@ from .ast import (
     FloatLiteral,
     TypeNode,
     VarDecl,
-    Expression
+    Expression,
+    BinaryExpr,
+    UnaryExpr,
+    FieldAccess,
 )
+from .operators import ADDITIVE_OPS, MULTIPLICATIVE_OPS, UNARY_OPS, POSTFIX_OPS, PRIMITIVE_TYPES ,LOGICAL_OPS, COMPARISON_OPS
 
 from .parser import Parser
 
@@ -16,5 +20,15 @@ __all__ = [
     "TypeNode",
     "VarDecl",
     "Expression",
-    "Parser"
+    "BinaryExpr",
+    "UnaryExpr",
+    "FieldAccess",
+    "Parser",
+    "ADDITIVE_OPS",
+    "MULTIPLICATIVE_OPS",
+    "UNARY_OPS",
+    "POSTFIX_OPS",
+    "PRIMITIVE_TYPES",
+    "LOGICAL_OPS",
+    "COMPARISON_OPS",
 ]

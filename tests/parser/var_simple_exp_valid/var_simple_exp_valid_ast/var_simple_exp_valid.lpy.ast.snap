@@ -1,0 +1,225 @@
+[
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "value": 42,
+            "kind": "IntLiteral"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "left": {
+                "value": 1,
+                "kind": "IntLiteral"
+            },
+            "operator": "+",
+            "right": {
+                "value": 2,
+                "kind": "IntLiteral"
+            },
+            "kind": "BinaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "left": {
+                "value": 10,
+                "kind": "IntLiteral"
+            },
+            "operator": "-",
+            "right": {
+                "value": 3,
+                "kind": "IntLiteral"
+            },
+            "kind": "BinaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "left": {
+                "value": 3,
+                "kind": "IntLiteral"
+            },
+            "operator": "*",
+            "right": {
+                "value": 4,
+                "kind": "IntLiteral"
+            },
+            "kind": "BinaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "left": {
+                "value": 10,
+                "kind": "IntLiteral"
+            },
+            "operator": "/",
+            "right": {
+                "value": 2,
+                "kind": "IntLiteral"
+            },
+            "kind": "BinaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "left": {
+                "value": 10,
+                "kind": "IntLiteral"
+            },
+            "operator": "%",
+            "right": {
+                "value": 3,
+                "kind": "IntLiteral"
+            },
+            "kind": "BinaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "left": {
+                "value": 1,
+                "kind": "IntLiteral"
+            },
+            "operator": "+",
+            "right": {
+                "left": {
+                    "value": 2,
+                    "kind": "IntLiteral"
+                },
+                "operator": "*",
+                "right": {
+                    "value": 3,
+                    "kind": "IntLiteral"
+                },
+                "kind": "BinaryExpr"
+            },
+            "kind": "BinaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "left": {
+                "left": {
+                    "value": 1,
+                    "kind": "IntLiteral"
+                },
+                "operator": "+",
+                "right": {
+                    "value": 2,
+                    "kind": "IntLiteral"
+                },
+                "kind": "BinaryExpr"
+            },
+            "operator": "*",
+            "right": {
+                "value": 3,
+                "kind": "IntLiteral"
+            },
+            "kind": "BinaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "left": {
+                "left": {
+                    "value": 1,
+                    "kind": "IntLiteral"
+                },
+                "operator": "+",
+                "right": {
+                    "value": 2,
+                    "kind": "IntLiteral"
+                },
+                "kind": "BinaryExpr"
+            },
+            "operator": "+",
+            "right": {
+                "value": 3,
+                "kind": "IntLiteral"
+            },
+            "kind": "BinaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    }
+]

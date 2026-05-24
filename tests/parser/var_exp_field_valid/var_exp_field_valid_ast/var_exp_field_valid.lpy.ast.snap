@@ -1,0 +1,40 @@
+[
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "obj": {
+                "name": "a",
+                "kind": "Identifier"
+            },
+            "field": "b",
+            "kind": "FieldAccess"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "x",
+        "type": {
+            "name": "i32",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "obj": {
+                "name": "a",
+                "kind": "Identifier"
+            },
+            "field": "b",
+            "kind": "FieldAccess"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    }
+]

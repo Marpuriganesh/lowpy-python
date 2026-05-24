@@ -1,0 +1,10 @@
+
+[IDENTIFIER(x) at 2:1][COLON(:) at 2:2][I32(i32) at 2:4][EQUALS(=) at 2:8][LPAREN(() at 2:10][NUMBER(42) at 2:11][RPAREN()) at 2:13]
+[IDENTIFIER(x) at 3:1][COLON(:) at 3:2][I32(i32) at 3:4][EQUALS(=) at 3:8][NUMBER(1) at 3:10][PLUS(+) at 3:12][NUMBER(2) at 3:14]
+[IDENTIFIER(x) at 4:1][COLON(:) at 4:2][I32(i32) at 4:4][EQUALS(=) at 4:8][NUMBER(10) at 4:10][MINUS(-) at 4:13][NUMBER(3) at 4:15]
+[IDENTIFIER(x) at 5:1][COLON(:) at 5:2][I32(i32) at 5:4][EQUALS(=) at 5:8][NUMBER(3) at 5:10][STAR(*) at 5:12][NUMBER(4) at 5:14]
+[IDENTIFIER(x) at 6:1][COLON(:) at 6:2][I32(i32) at 6:4][EQUALS(=) at 6:8][NUMBER(10) at 6:10][SLASH(/) at 6:13][NUMBER(2) at 6:15]
+[IDENTIFIER(x) at 7:1][COLON(:) at 7:2][I32(i32) at 7:4][EQUALS(=) at 7:8][NUMBER(10) at 7:10][MOD(%) at 7:13][NUMBER(3) at 7:15]
+[IDENTIFIER(x) at 8:1][COLON(:) at 8:2][I32(i32) at 8:4][EQUALS(=) at 8:8][NUMBER(1) at 8:10][PLUS(+) at 8:12][NUMBER(2) at 8:14][STAR(*) at 8:16][NUMBER(3) at 8:18]
+[IDENTIFIER(x) at 9:1][COLON(:) at 9:2][I32(i32) at 9:4][EQUALS(=) at 9:8][LPAREN(() at 9:10][NUMBER(1) at 9:11][PLUS(+) at 9:13][NUMBER(2) at 9:15][RPAREN()) at 9:16][STAR(*) at 9:18][NUMBER(3) at 9:20]
+[IDENTIFIER(x) at 10:1][COLON(:) at 10:2][I32(i32) at 10:4][EQUALS(=) at 10:8][NUMBER(1) at 10:10][PLUS(+) at 10:12][NUMBER(2) at 10:14][PLUS(+) at 10:16][NUMBER(3) at 10:18][EOF(EOF) at 10:19]

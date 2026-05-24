@@ -1,0 +1,4 @@
+[IDENTIFIER(x) at 1:1][COLON(:) at 1:2][BOOL(bool) at 1:4][EQUALS(=) at 1:9][IDENTIFIER(a) at 1:11][AND(and) at 1:13][IDENTIFIER(b) at 1:17]
+[IDENTIFIER(x) at 2:1][COLON(:) at 2:2][BOOL(bool) at 2:4][EQUALS(=) at 2:9][IDENTIFIER(a) at 2:11][OR(or) at 2:13][IDENTIFIER(b) at 2:16]
+[IDENTIFIER(x) at 3:1][COLON(:) at 3:2][BOOL(bool) at 3:4][EQUALS(=) at 3:9][IDENTIFIER(a) at 3:11][EQEQ(==) at 3:13][IDENTIFIER(b) at 3:16][AND(and) at 3:18][IDENTIFIER(c) at 3:22][EQEQ(==) at 3:24][IDENTIFIER(d) at 3:27]
+[EOF(EOF) at 4:1]

@@ -24,7 +24,25 @@ class FloatLiteral(Expression):
 class Identifier(Expression):
     name: str
     kind: str = field(default="Identifier", init=False)
+
+@dataclass
+class BinaryExpr(Expression):
+    left: Expression
+    operator: str
+    right: Expression
+    kind: str = field(default="BinaryExpr", init=False)
+
+@dataclass
+class UnaryExpr(Expression):
+    operator: str
+    operand: Expression
+    kind: str = field(default="UnaryExpr", init=False)
     
+@dataclass
+class FieldAccess(Expression):
+    obj: Expression
+    field: str
+    kind: str = field(default="FieldAccess", init=False)
 
 @dataclass
 class TypeNode(BaseNode):

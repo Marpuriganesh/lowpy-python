@@ -1,0 +1,7 @@
+[IDENTIFIER(x) at 1:1][COLON(:) at 1:2][I32(i32) at 1:4][EQUALS(=) at 1:8][MINUS(-) at 1:10][NUMBER(5) at 1:11]
+[IDENTIFIER(x) at 2:1][COLON(:) at 2:2][BOOL(bool) at 2:4][EQUALS(=) at 2:9][NOT(not) at 2:11][IDENTIFIER(a) at 2:15]
+[IDENTIFIER(x) at 3:1][COLON(:) at 3:2][I32(i32) at 3:4][EQUALS(=) at 3:8][STAR(*) at 3:10][IDENTIFIER(ptr) at 3:11]
+[IDENTIFIER(x) at 4:1][COLON(:) at 4:2][AT(@) at 4:4][I32(i32) at 4:5][EQUALS(=) at 4:9][AMP(&) at 4:11][IDENTIFIER(y) at 4:12]
+[IDENTIFIER(x) at 5:1][COLON(:) at 5:2][I32(i32) at 5:4][EQUALS(=) at 5:8][MINUS(-) at 5:10][MINUS(-) at 5:12][NUMBER(5) at 5:13]
+[IDENTIFIER(x) at 6:1][COLON(:) at 6:2][I32(i32) at 6:4][EQUALS(=) at 6:8][IDENTIFIER(a) at 6:10][STAR(*) at 6:12][STAR(*) at 6:14][IDENTIFIER(b) at 6:15]
+[EOF(EOF) at 7:1]

@@ -1,0 +1,87 @@
+[
+    {
+        "name": "x",
+        "type": {
+            "name": "bool",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "left": {
+                "name": "a",
+                "kind": "Identifier"
+            },
+            "operator": "and",
+            "right": {
+                "name": "b",
+                "kind": "Identifier"
+            },
+            "kind": "BinaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "x",
+        "type": {
+            "name": "bool",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "left": {
+                "name": "a",
+                "kind": "Identifier"
+            },
+            "operator": "or",
+            "right": {
+                "name": "b",
+                "kind": "Identifier"
+            },
+            "kind": "BinaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    },
+    {
+        "name": "x",
+        "type": {
+            "name": "bool",
+            "is_pointer": false,
+            "generic_args": null,
+            "kind": "TypeNode"
+        },
+        "value": {
+            "left": {
+                "left": {
+                    "name": "a",
+                    "kind": "Identifier"
+                },
+                "operator": "==",
+                "right": {
+                    "name": "b",
+                    "kind": "Identifier"
+                },
+                "kind": "BinaryExpr"
+            },
+            "operator": "and",
+            "right": {
+                "left": {
+                    "name": "c",
+                    "kind": "Identifier"
+                },
+                "operator": "==",
+                "right": {
+                    "name": "d",
+                    "kind": "Identifier"
+                },
+                "kind": "BinaryExpr"
+            },
+            "kind": "BinaryExpr"
+        },
+        "is_const": false,
+        "kind": "VarDecl"
+    }
+]

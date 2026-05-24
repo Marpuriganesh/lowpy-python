@@ -1,0 +1,4 @@
+x: bool = a == b
+x: bool = a != b
+x: bool = a < b
+x: bool = a > b

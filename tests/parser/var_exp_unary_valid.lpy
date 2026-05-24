@@ -1,0 +1,6 @@
+x: i32 = -5
+x: bool = not a
+x: i32 = *ptr
+x: @i32 = &y
+x: i32 = - -5
+x: i32 = a * *b

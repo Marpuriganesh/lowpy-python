@@ -1,24 +1,32 @@
-from .ast import Identifier, IntLiteral, FloatLiteral, TypeNode, VarDecl
-from src.lexer import TokenType, Token
+from .ast import (
+    Identifier,
+    IntLiteral,
+    FloatLiteral,
+    TypeNode,
+    VarDecl,
+    BinaryExpr,
+    UnaryExpr,
+    FieldAccess,
+)
+from .operators import (
+    PRIMITIVE_TYPES,
+    LOGICAL_OPS,
+    COMPARISON_OPS,
+    ADDITIVE_OPS,
+    MULTIPLICATIVE_OPS,
+    UNARY_OPS,
+    POSTFIX_OPS
+)
 from typing import Union
+from src.lexer import Token, TokenType
 
-PRIMITIVE_TYPES = {
-    TokenType.I8,
-    TokenType.I16,
-    TokenType.I32,
-    TokenType.I64,
-    TokenType.U8,
-    TokenType.U16,
-    TokenType.U32,
-    TokenType.U64,
-    TokenType.F32,
-    TokenType.F64,
-    TokenType.BOOL,
-    TokenType.CHAR,
-    TokenType.VOID,
-}
 
-Statement = Union[VarDecl,Identifier]  # Extend this with more statement types as needed
+
+
+
+Statement = Union[
+    VarDecl, Identifier
+]  # Extend this with more statement types as needed
 
 
 class Parser:
@@ -26,14 +34,13 @@ class Parser:
         self.tokens: list[Token] = tokens
         self.position = 0
 
-
     # MARK:---Peek and Advance---
-    def peek(self, offset=0)-> Union[Token, None]:
+    def peek(self, offset=0) -> Union[Token, None]:
         if self.position + offset < len(self.tokens):
             return self.tokens[self.position + offset]
         return None
 
-    def advance(self)-> Union[Token, None]:
+    def advance(self) -> Union[Token, None]:
         value = self.peek()
         if value is not None:
             self.position += 1
@@ -41,17 +48,21 @@ class Parser:
 
     # MARK:---Helper functions---
 
-    def get_source_line(self, line)-> str:
-        get_source_line_tokens = [token for token in self.tokens if token.line == line and token.type != TokenType.EOF]
+    def get_source_line(self, line) -> str:
+        get_source_line_tokens = [
+            token
+            for token in self.tokens
+            if token.line == line and token.type != TokenType.EOF
+        ]
         if get_source_line_tokens:
-            return " ".join(str(token.value )for token in get_source_line_tokens)
+            return " ".join(str(token.value) for token in get_source_line_tokens)
         return ""
 
-    def build_error_pointer_string(self, line, column)-> str:
+    def build_error_pointer_string(self, line, column) -> str:
         source_line = self.get_source_line(line)
         return f"{source_line}\n{' ' * (column - 1)}^"
-    
-    def build_error_string(self, message, line, column)-> str:
+
+    def build_error_string(self, message, line, column) -> str:
         pointer_string = self.build_error_pointer_string(line, column)
         return f"{pointer_string}\n{message} at line {line}, column {column}"
 
@@ -61,7 +72,7 @@ class Parser:
         token = self.peek()
         token_type = None
         is_pointer = False
-        
+
         if token.type == TokenType.AT:
             self.advance()  # consume '@'
             is_pointer = True
@@ -74,7 +85,7 @@ class Parser:
                         token.column,
                     )
                 )
-        
+
         if token.type in PRIMITIVE_TYPES or token.type == TokenType.IDENTIFIER:
             if token.type in PRIMITIVE_TYPES:
                 token_type = "primitive"
@@ -96,42 +107,130 @@ class Parser:
                             self.build_error_string(
                                 "Expected ',' or '>' in generic type",
                                 self.peek().line,
-                                self.peek().column
+                                self.peek().column,
                             )
                         )
-                return TypeNode(name=token.value, is_pointer=is_pointer, generic_args=generic_args)
+                return TypeNode(
+                    name=token.value, is_pointer=is_pointer, generic_args=generic_args
+                )
             elif token_type == "primitive" and self.peek().type == TokenType.LT:
                 raise SyntaxError(
                     self.build_error_string(
                         "Primitive types cannot have generic arguments",
                         self.peek().line,
-                        self.peek().column
+                        self.peek().column,
                     )
                 )
             return TypeNode(name=token.value, is_pointer=is_pointer)
-        raise SyntaxError(self.build_error_string("Unexpected type", self.peek().line, self.peek().column))
-
-    def parse_expression(self) -> IntLiteral | FloatLiteral | Identifier:
-        # Placeholder for expression parsing logic
-        token = self.peek()
-        if token.type == TokenType.NUMBER:
-            self.advance()
-            if isinstance(token.value, float):
-                return FloatLiteral(value=token.value)
-            return IntLiteral(value=token.value)
-
-        elif token.type == TokenType.IDENTIFIER:
-            self.advance()
-            return Identifier(name=token.value)
-        else:
-            raise SyntaxError(
-                self.build_error_string(
-                    "Unexpected token in expression",
-                    self.peek().line,
-                    self.peek().column
-                )
+        raise SyntaxError(
+            self.build_error_string(
+                "Unexpected type", self.peek().line, self.peek().column
             )
+        )
 
+    # MARK:---Expression parsing functions---
+    def parse_expression(self) -> BinaryExpr:
+        return self.parse_logical()
+    
+    def parse_logical(self) -> BinaryExpr:
+        left = self.parse_comparision()
+        while self.peek() and self.peek().type in LOGICAL_OPS:
+            operator = self.peek().value
+            self.advance()
+            right = self.parse_comparision()
+            left = BinaryExpr(left=left, operator=operator, right=right)
+        return left
+    
+    def parse_comparision(self) -> BinaryExpr:
+        left = self.parse_additive()
+        while self.peek() and self.peek().type in COMPARISON_OPS:
+            operator = self.peek().value
+            self.advance()
+            right = self.parse_additive()
+            left = BinaryExpr(left=left, operator=operator, right=right)
+        return left
+    
+    def parse_additive(self) -> BinaryExpr:
+        left = self.parse_multiplicative()
+        while self.peek() and self.peek().type in ADDITIVE_OPS:
+            operator = self.peek().value
+            self.advance()
+            right = self.parse_multiplicative()
+            left = BinaryExpr(left=left, operator=operator, right=right)
+        return left
+    
+    def parse_multiplicative(self) -> Union[BinaryExpr, UnaryExpr, IntLiteral, FloatLiteral, Identifier, FieldAccess]:
+        left = self.parse_unary()
+        while self.peek() and self.peek().type in MULTIPLICATIVE_OPS:
+            operator = self.peek().value
+            self.advance()
+            right = self.parse_unary()
+            left = BinaryExpr(left=left, operator=operator, right=right)
+        return left
+    
+    def parse_unary(self) -> Union[UnaryExpr, IntLiteral, FloatLiteral, Identifier, FieldAccess]:
+        if self.peek() and self.peek().type in UNARY_OPS:
+            operator = self.peek().value
+            self.advance()
+            operand = self.parse_unary()
+            return UnaryExpr(operator=operator, operand=operand)
+        return self.parse_postfix()
+    
+    def parse_postfix(self) -> Union[UnaryExpr, IntLiteral, FloatLiteral, Identifier, FieldAccess]:
+        left = self.parse_primary()
+        while self.peek() and self.peek().type in POSTFIX_OPS:
+            operator = self.peek().value
+            self.advance()
+            if operator == ".":
+                if not self.peek() or self.peek().type != TokenType.IDENTIFIER:
+                    raise SyntaxError(
+                        self.build_error_string(
+                            "Expected identifier after '.'",
+                            self.peek().line,
+                            self.peek().column,
+                        )
+                    )
+                member_name = self.peek().value
+                self.advance()
+                left = FieldAccess(obj=left, field=member_name)
+            elif operator == "(":
+                raise NotImplementedError("Function call parsing not implemented yet")
+            elif operator == "[":
+                raise NotImplementedError("Array indexing parsing not implemented yet")
+        return left
+
+    def parse_primary(self) -> Union[IntLiteral, FloatLiteral, Identifier]:
+        token = self.peek()
+        match token.type:
+            case TokenType.NUMBER:
+                self.advance()
+                if isinstance(token.value, float):
+                    return FloatLiteral(value=token.value)
+                return IntLiteral(value=token.value)
+            case TokenType.IDENTIFIER:
+                self.advance()
+                return Identifier(name=token.value)
+            case TokenType.LPAREN:
+                self.advance()
+                expr = self.parse_expression()
+                if not self.peek() or self.peek().type != TokenType.RPAREN:
+                    raise SyntaxError(
+                        self.build_error_string(
+                            "Expected ')' after expression",
+                            self.peek().line,
+                            self.peek().column,
+                        )
+                    )
+                self.advance()
+                return expr
+            case _:
+                raise SyntaxError(
+                    self.build_error_string(
+                        "Unexpected token in expression",
+                        self.peek().line,
+                        self.peek().column,
+                    )
+                )
     def parse_var_decl(self) -> VarDecl:
         # Expect 'const'
         is_const = False
@@ -140,9 +239,7 @@ class Parser:
         if self.peek().type != TokenType.IDENTIFIER:
             raise SyntaxError(
                 self.build_error_string(
-                    "Expected identifier",
-                    self.peek().line,
-                    self.peek().column
+                    "Expected identifier", self.peek().line, self.peek().column
                 )
             )
         name = self.peek().value
@@ -152,9 +249,7 @@ class Parser:
         if self.peek().type != TokenType.COLON:
             raise SyntaxError(
                 self.build_error_string(
-                    "Expected ':'",
-                    self.peek().line,
-                    self.peek().column
+                    "Expected ':'", self.peek().line, self.peek().column
                 )
             )
         self.advance()
@@ -170,9 +265,7 @@ class Parser:
         if self.peek().type != TokenType.EQUALS:
             raise SyntaxError(
                 self.build_error_string(
-                    "Expected '='",
-                    self.peek().line,
-                    self.peek().column
+                    "Expected '='", self.peek().line, self.peek().column
                 )
             )
         self.advance()
@@ -198,9 +291,7 @@ class Parser:
                 case _:
                     raise SyntaxError(
                         self.build_error_string(
-                            "Unexpected token",
-                            self.peek().line,
-                            self.peek().column
+                            "Unexpected token", self.peek().line, self.peek().column
                         )
                     )
         return statements
@@ -210,6 +301,7 @@ class Parser:
             return self.parse_statements()
         except SyntaxError as e:
             raise SyntaxError(f"(Syntax error):\n{e}")
+
     # MARK:---Entry point---
-    def parse(self)-> list[Statement]:
+    def parse(self) -> list[Statement]:
         return self.parse_program()

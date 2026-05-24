@@ -1,0 +1,10 @@
+#expressions with simple operators and parentheses
+x: i32 = (42)
+x: i32 = 1 + 2
+x: i32 = 10 - 3
+x: i32 = 3 * 4
+x: i32 = 10 / 2
+x: i32 = 10 % 3
+x: i32 = 1 + 2 * 3
+x: i32 = (1 + 2) * 3
+x: i32 = 1 + 2 + 3
